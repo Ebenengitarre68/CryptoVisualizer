@@ -8,18 +8,18 @@ import {
     type NodeProps,
 } from '@xyflow/react';
 
-import { isTextNode, type MyNode } from './utils';
+import {isTextNode, type MyNode, TextNode} from './utils';
 
 function TextToBinaryNode({ id }: NodeProps) {
     const { updateNodeData } = useReactFlow();
     const connections = useHandleConnections({
         type: 'target',
     });
-    const nodesData = useNodesData<MyNode>(connections[0]?.source);
+    const nodesData:Pick<MyNode, "id" | "type" | "data"> | null = useNodesData<MyNode>(connections[0]?.source);
     const textNode = isTextNode(nodesData) ? nodesData : null;
 
     useEffect(() => {
-        updateNodeData(id, { text:  Array.from(textNode !== null ? textNode.data.text : '', char => char.charCodeAt(0))});
+        updateNodeData(id, { bytes:  Array.from(textNode !== null ? textNode.data.text : '', char => char.charCodeAt(0))});
     }, [textNode]);
 
     return (

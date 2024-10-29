@@ -16,16 +16,18 @@ import TextNode from './nodes/TextNode';
 import ResultNode from './nodes/ResultNode';
 import { type MyNode } from './nodes/utils';
 import TextToBinaryNode from "./nodes/TextToBinaryNode.tsx";
+import XorNode from "./nodes/XorNode.tsx";
 
 const nodeTypes = {
   text: TextNode,
   result: ResultNode,
   t2binary: TextToBinaryNode,
+  xor: XorNode,
 };
 
 const initNodes: MyNode[] = [
   {
-    id: '1',
+    id: 't1',
     type: 'text',
     data: {
       text: 'hello',
@@ -33,53 +35,109 @@ const initNodes: MyNode[] = [
     position: { x: 0, y: 0 },
   },
   {
-    id: '2',
+    id: 't2',
     type: 'text',
     data: {
-      text: 'world',
+      text: 'tothe',
     },
     position: { x: 200, y: 0 },
   },
   {
-    id: '3',
+    id: 't3',
+    type: 'text',
+    data: {
+      text: 'world',
+    },
+    position: { x: 400, y: 0 },
+  },
+  {
+    id: '2b1',
     type: 't2binary',
-    data: { text: '' },
+    data: { bytes: [0] },
     position: { x: 50, y: 100 },
   },
   {
-    id: '4',
+    id: '2b2',
     type: 't2binary',
-    data: { text: '' },
-    position: { x: 250, y: 100 },
+    data: { bytes: [0] },
+    position: { x: 250, y: 100  },
   },
   {
-    id: '5',
+    id: '2b3',
+    type: 't2binary',
+    data: { bytes: [0] },
+    position: { x: 450, y: 100 },
+  },
+  {
+    id: 'x1',
+    type: 'xor',
+    data: { bytes: [0] },
+    position: { x: 250, y: 200 },
+  },
+  {
+    id: 'r1',
     type: 'result',
     data: {},
-    position: { x: 130, y: 200 },
+    position: { x: 0, y: 300 },
+  },
+  {
+    id: 'r2',
+    type: 'result',
+    data: {},
+    position: { x: 200, y: 300 },
   },
 ];
 
 const initEdges: Edge[] = [
   {
-    id: 'e1-3',
-    source: '1',
-    target: '3',
+    id: 't1-2b1',
+    source: 't1',
+    target: '2b1',
   },
   {
-    id: 'e3-5',
-    source: '3',
-    target: '5',
+    id: 't2-2b2',
+    source: 't2',
+    target: '2b2',
   },
   {
-    id: 'e2-4',
-    source: '2',
-    target: '4',
+    id: 't3-2b3',
+    source: 't3',
+    target: '2b3',
   },
   {
-    id: 'e4-5',
-    source: '4',
-    target: '5',
+    id: '2b1-x1',
+    source: '2b1',
+    target: 'x1',
+  },
+  {
+    id: '2b2-x1',
+    source: '2b2',
+    target: 'x1',
+  },
+  {
+    id: '2b3-x1',
+    source: '2b3',
+    target: 'x1',
+  },
+  {
+    id: '2b1-r1',
+    source: '2b1',
+    target: 'r1',
+  },
+  {
+    id: '2b2-r1',
+    source: '2b2',
+    target: 'r1',
+  },
+  {
+    id: '2b3-r1',
+    source: '2b3',
+    target: 'r1',
+  },
+  {
+    id: 'x1-r2',
+    source: 'x1',
+    target: 'r2',
   },
 ];
 

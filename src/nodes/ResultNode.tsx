@@ -5,7 +5,7 @@ import {
     useHandleConnections,
     useNodesData,
 } from '@xyflow/react';
-import { isTextNode, type MyNode } from './utils';
+import { type MyNode } from './utils';
 
 function ResultNode() {
     const connections = useHandleConnections({
@@ -14,7 +14,7 @@ function ResultNode() {
     const nodesData = useNodesData<MyNode>(
         connections.map((connection) => connection.source),
     );
-    const textNodes = nodesData.filter(isTextNode);
+
 
     return (
         <div
@@ -30,7 +30,7 @@ function ResultNode() {
             <div>
                 Result:
                 incoming texts:{' '}
-                {textNodes.map(({ data }, i) => <div key={i}>{data.text.toString()}</div>) ||
+                {nodesData.map(({ data }:Pick<MyNode,any>, i) => <div key={i}>{  data.text == null ?  data.bytes.toString() : data.text}</div>) ||
                     'none'}
             </div>
         </div>

@@ -26,10 +26,11 @@ function ResultNode() {
                 borderRadius: 10,
             }}
         >
-            <Handle type="target" position={Position.Left} />
+            <Handle type="target" position={Position.Top} />
             <div>
+                Result:
                 incoming texts:{' '}
-                {textNodes.map(({ data }, i) => <div key={i}>{data.text}</div>) ||
+                {textNodes.map(({ data }, i) => <div key={i}>{data.text.toString()}</div>) ||
                     'none'}
             </div>
         </div>

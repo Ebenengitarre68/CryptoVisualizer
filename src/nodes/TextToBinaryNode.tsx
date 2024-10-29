@@ -10,7 +10,7 @@ import {
 
 import { isTextNode, type MyNode } from './utils';
 
-function UppercaseNode({ id }: NodeProps) {
+function TextToBinaryNode({ id }: NodeProps) {
     const { updateNodeData } = useReactFlow();
     const connections = useHandleConnections({
         type: 'target',
@@ -19,7 +19,7 @@ function UppercaseNode({ id }: NodeProps) {
     const textNode = isTextNode(nodesData) ? nodesData : null;
 
     useEffect(() => {
-        updateNodeData(id, { text: textNode?.data.text.toUpperCase() });
+        updateNodeData(id, { text:  Array.from(textNode !== null ? textNode.data.text : '', char => char.charCodeAt(0))});
     }, [textNode]);
 
     return (
@@ -34,13 +34,13 @@ function UppercaseNode({ id }: NodeProps) {
         >
             <Handle
                 type="target"
-                position={Position.Left}
+                position={Position.Top}
                 isConnectable={connections.length === 0}
             />
-            <div>uppercase transform</div>
-            <Handle type="source" position={Position.Right} />
+            <div>text to binary</div>
+            <Handle type="source" position={Position.Bottom} />
         </div>
     );
 }
 
-export default memo(UppercaseNode);
+export default memo(TextToBinaryNode);

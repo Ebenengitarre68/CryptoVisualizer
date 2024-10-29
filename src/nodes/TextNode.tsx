@@ -20,7 +20,7 @@ function TextNode({ id, data }: NodeProps<Node<{ text: string }>>) {
                 borderRadius: 10,
             }}
         >
-            <div>node {id}</div>
+            <div>Input Node</div>
             <div style={{ marginTop: 5 }}>
                 <input
                     onChange={(evt) => updateNodeData(id, { text: evt.target.value })}

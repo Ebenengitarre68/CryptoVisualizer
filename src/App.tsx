@@ -7,20 +7,20 @@ import {
   useEdgesState,
   Background,
   type Edge,
-  type OnConnect,
+  type OnConnect, MiniMap,
 } from '@xyflow/react';
 
 import '@xyflow/react/dist/style.css';
 
 import TextNode from './nodes/TextNode';
 import ResultNode from './nodes/ResultNode';
-import UppercaseNode from './nodes/UppercaseNode';
 import { type MyNode } from './nodes/utils';
+import TextToBinaryNode from "./nodes/TextToBinaryNode.tsx";
 
 const nodeTypes = {
   text: TextNode,
   result: ResultNode,
-  uppercase: UppercaseNode,
+  t2binary: TextToBinaryNode,
 };
 
 const initNodes: MyNode[] = [
@@ -30,7 +30,7 @@ const initNodes: MyNode[] = [
     data: {
       text: 'hello',
     },
-    position: { x: -100, y: -50 },
+    position: { x: 0, y: 0 },
   },
   {
     id: '2',
@@ -38,19 +38,25 @@ const initNodes: MyNode[] = [
     data: {
       text: 'world',
     },
-    position: { x: 0, y: 100 },
+    position: { x: 200, y: 0 },
   },
   {
     id: '3',
-    type: 'uppercase',
+    type: 't2binary',
     data: { text: '' },
-    position: { x: 100, y: -100 },
+    position: { x: 50, y: 100 },
   },
   {
     id: '4',
+    type: 't2binary',
+    data: { text: '' },
+    position: { x: 250, y: 100 },
+  },
+  {
+    id: '5',
     type: 'result',
     data: {},
-    position: { x: 300, y: -75 },
+    position: { x: 130, y: 200 },
   },
 ];
 
@@ -61,14 +67,19 @@ const initEdges: Edge[] = [
     target: '3',
   },
   {
-    id: 'e3-4',
+    id: 'e3-5',
     source: '3',
-    target: '4',
+    target: '5',
   },
   {
     id: 'e2-4',
     source: '2',
     target: '4',
+  },
+  {
+    id: 'e4-5',
+    source: '4',
+    target: '5',
   },
 ];
 
@@ -91,6 +102,7 @@ const CustomNodeFlow = () => {
           nodeTypes={nodeTypes}
           fitView
       >
+        <MiniMap zoomable pannable nodeStrokeWidth={3} />
         <Controls />
         <Background />
       </ReactFlow>

@@ -13,24 +13,34 @@ import {
 import '@xyflow/react/dist/style.css';
 
 import TextNode from './nodes/TextNode';
-import ResultNode from './nodes/ResultNode';
+import MonitoringNode from './nodes/MonitoringNode.tsx';
 import { type MyNode } from './nodes/utils';
 import TextToBinaryNode from "./nodes/TextToBinaryNode.tsx";
 import XorNode from "./nodes/XorNode.tsx";
+import CommentNode from './nodes/CommentNode.tsx';
 
 const nodeTypes = {
   text: TextNode,
-  result: ResultNode,
+  monitor: MonitoringNode,
   t2binary: TextToBinaryNode,
   xor: XorNode,
+  comment: CommentNode,
 };
 
 const initNodes: MyNode[] = [
   {
+    id: 'c1',
+    type: 'comment',
+    data: {
+      text: 'Hier könnte ihre Werbung stehen'
+    },
+    position: {x: 0, y: -100 },
+  },
+  {
     id: 't1',
     type: 'text',
     data: {
-      text: 'hello',
+      text: 'hello'
     },
     position: { x: 0, y: 0 },
   },
@@ -38,7 +48,7 @@ const initNodes: MyNode[] = [
     id: 't2',
     type: 'text',
     data: {
-      text: 'tothe',
+      text: 'tothe'
     },
     position: { x: 200, y: 0 },
   },
@@ -46,43 +56,51 @@ const initNodes: MyNode[] = [
     id: 't3',
     type: 'text',
     data: {
-      text: 'world',
+      text: 'world'
     },
     position: { x: 400, y: 0 },
   },
   {
     id: '2b1',
     type: 't2binary',
-    data: { bytes: [0] },
+    data: {
+      bytes: [0]
+    },
     position: { x: 50, y: 100 },
   },
   {
     id: '2b2',
     type: 't2binary',
-    data: { bytes: [0] },
+    data: {
+      bytes: [0]
+    },
     position: { x: 250, y: 100  },
   },
   {
     id: '2b3',
     type: 't2binary',
-    data: { bytes: [0] },
+    data: {
+      bytes: [0]
+    },
     position: { x: 450, y: 100 },
   },
   {
     id: 'x1',
     type: 'xor',
-    data: { bytes: [0] },
+    data: {
+      bytes: [0]
+    },
     position: { x: 250, y: 200 },
   },
   {
     id: 'r1',
-    type: 'result',
+    type: 'monitor',
     data: {},
     position: { x: 0, y: 300 },
   },
   {
     id: 'r2',
-    type: 'result',
+    type: 'monitor',
     data: {},
     position: { x: 200, y: 300 },
   },

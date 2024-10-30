@@ -8,7 +8,7 @@ import {
     type NodeProps,
 } from '@xyflow/react';
 
-import {isTextNode, type MyNode, TextNode} from './utils';
+import {isTextNode, type MyNode} from './utils';
 
 function TextToBinaryNode({ id }: NodeProps) {
     const { updateNodeData } = useReactFlow();

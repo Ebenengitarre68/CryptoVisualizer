@@ -7,7 +7,7 @@ import {
 } from '@xyflow/react';
 import { type MyNode } from './utils';
 
-function ResultNode() {
+function MonitoringNode() {
     const connections = useHandleConnections({
         type: 'target',
     });
@@ -28,8 +28,7 @@ function ResultNode() {
         >
             <Handle type="target" position={Position.Top} />
             <div>
-                Result:
-                incoming texts:{' '}
+                Incoming texts:{' '}
                 {nodesData.map(({ data }:Pick<MyNode,any>, i) => <div key={i}>{  data.text == null ?  data.bytes.toString() : data.text}</div>) ||
                     'none'}
             </div>
@@ -37,4 +36,4 @@ function ResultNode() {
     );
 }
 
-export default memo(ResultNode);
+export default memo(MonitoringNode);

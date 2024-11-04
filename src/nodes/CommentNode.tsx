@@ -1,11 +1,35 @@
-import { memo } from 'react';
+import React, { memo, useEffect,useState } from 'react';
 import {
     type NodeProps,
-    type Node,
+    type Node, useReactFlow,
 } from '@xyflow/react';
 
-function CommentNode({ data }: NodeProps<Node<{ text: string }>>) {
-    return (
+function CommentNode({ id, data}: NodeProps<Node<{ text: string }>>) {
+    const { updateNodeData } = useReactFlow();
+    let helper:string = ""
+    return data.text == null ? (
+        <div
+            style={{
+                background: '#eee',
+                color: '#222',
+                padding: 10,
+                fontSize: 12,
+                borderRadius: 10,
+            }}
+        >
+            <input
+                onChange={(evt) => helper = evt.target.value}
+                value={data.text}
+                style={{display: 'block'}}
+            />
+            <input
+                type="button"
+                value="Save"
+                onClick={()=>updateNodeData(id, {text:helper})}
+            />
+
+        </div>
+    ) : (
         <div
             style={{
                 background: '#eee',

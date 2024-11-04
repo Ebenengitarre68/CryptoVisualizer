@@ -32,7 +32,7 @@ body {
 .dndflow aside {
   border-right: 1px solid #eee;
   padding: 15px 10px;
-  font-size: 12px;
+  font-size: 15px;
   background: #fcfcfc;
 }
 
@@ -76,6 +76,6 @@ body {
 
   .dndflow aside {
     width: 20%;
-    max-width: 250px;
+    max-width: 500px;
   }
 }

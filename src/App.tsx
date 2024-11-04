@@ -18,6 +18,7 @@ import { type MyNode } from './nodes/utils';
 import TextToBinaryNode from "./nodes/TextToBinaryNode.tsx";
 import XorNode from "./nodes/XorNode.tsx";
 import CommentNode from './nodes/CommentNode.tsx';
+import BinaryToText from "./nodes/BinaryToText.tsx";
 
 import {DnDProvider, useDnD} from "./DnDContext.tsx";
 import Sidebar from "./Sidebar.tsx";
@@ -28,6 +29,7 @@ const nodeTypes = {
   t2binary: TextToBinaryNode,
   xor: XorNode,
   comment: CommentNode,
+  b2text: BinaryToText,
 };
 
 const initNodes: MyNode[] = [
@@ -192,9 +194,6 @@ const CustomNodeFlow = () => {
           return;
         }
 
-        // project was renamed to screenToFlowPosition
-        // and you don't need to subtract the reactFlowBounds.left/top anymore
-        // details: https://reactflow.dev/whats-new/2023-11-10
         const position = screenToFlowPosition({
           x: event.clientX,
           y: event.clientY,
@@ -203,7 +202,7 @@ const CustomNodeFlow = () => {
           id: getId(),
           type,
           position,
-          data: { },
+          data: {bytes: [0] },
         };
         console.log(newNode);
         setNodes((nds) => nds.concat(newNode));

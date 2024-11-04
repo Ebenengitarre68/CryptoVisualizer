@@ -47,8 +47,7 @@ function XorNode({ id }: NodeProps) {
             style={{
                 background: '#eee',
                 color: '#222',
-                padding: 10,
-                fontSize: 12,
+                fontSize: 25,
                 borderRadius: 10,
             }}
         >
@@ -56,8 +55,7 @@ function XorNode({ id }: NodeProps) {
                 type="target"
                 position={Position.Top}
             />
-            <div>xor ⊕</div>
-            <div>{useNodesData(id, { bytes:  nodesData}).data.bytes.toString()}</div>
+            <div>⊕</div>
             <Handle type="source" position={Position.Bottom} />
         </div>
     );

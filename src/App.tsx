@@ -1,4 +1,4 @@
-import { useCallback } from 'react';
+import React, {useCallback, useRef} from 'react';
 import {
   ReactFlow,
   Controls,
@@ -7,7 +7,7 @@ import {
   useEdgesState,
   Background,
   type Edge,
-  type OnConnect, MiniMap,
+  type OnConnect, MiniMap, useReactFlow, ReactFlowProvider,
 } from '@xyflow/react';
 
 import '@xyflow/react/dist/style.css';
@@ -18,6 +18,9 @@ import { type MyNode } from './nodes/utils';
 import TextToBinaryNode from "./nodes/TextToBinaryNode.tsx";
 import XorNode from "./nodes/XorNode.tsx";
 import CommentNode from './nodes/CommentNode.tsx';
+
+import {DnDProvider, useDnD} from "./DnDContext.tsx";
+import Sidebar from "./Sidebar.tsx";
 
 const nodeTypes = {
   text: TextNode,
@@ -159,30 +162,84 @@ const initEdges: Edge[] = [
   },
 ];
 
+let id = 0;
+const getId = () => `dndnode_${id++}`;
+
 const CustomNodeFlow = () => {
-  const [nodes, , onNodesChange] = useNodesState(initNodes);
+  const reactFlowWrapper = useRef(null);
+  const [nodes,setNodes , onNodesChange] = useNodesState(initNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
+  const { screenToFlowPosition } = useReactFlow();
+  const [type] = useDnD();
+
 
   const onConnect: OnConnect = useCallback(
       (connection) => setEdges((eds) => addEdge(connection, eds)),
       [setEdges],
   );
 
+  const onDragOver = useCallback((event) => {
+    event.preventDefault();
+    event.dataTransfer.dropEffect = 'move';
+  }, []);
+
+  const onDrop = useCallback(
+      (event) => {
+        event.preventDefault();
+
+        // check if the dropped element is valid
+        if (!type) {
+          return;
+        }
+
+        // project was renamed to screenToFlowPosition
+        // and you don't need to subtract the reactFlowBounds.left/top anymore
+        // details: https://reactflow.dev/whats-new/2023-11-10
+        const position = screenToFlowPosition({
+          x: event.clientX,
+          y: event.clientY,
+        });
+        const newNode = {
+          id: getId(),
+          type,
+          position,
+          data: { },
+        };
+        console.log(newNode);
+        setNodes((nds) => nds.concat(newNode));
+      },
+      [screenToFlowPosition, type],
+  );
+
   return (
-      <ReactFlow
-          nodes={nodes}
-          edges={edges}
-          onNodesChange={onNodesChange}
-          onEdgesChange={onEdgesChange}
-          onConnect={onConnect}
-          nodeTypes={nodeTypes}
-          fitView
-      >
-        <MiniMap zoomable pannable nodeStrokeWidth={3} />
-        <Controls />
-        <Background />
-      </ReactFlow>
+      <div className="dndflow">
+        <div className="reactflow-wrapper" ref={reactFlowWrapper}>
+          <ReactFlow
+              nodes={nodes}
+              edges={edges}
+              onNodesChange={onNodesChange}
+              onEdgesChange={onEdgesChange}
+              onConnect={onConnect}
+              nodeTypes={nodeTypes}
+              onDrop={onDrop}
+              onDragOver={onDragOver}
+              fitView
+          >
+            <MiniMap zoomable pannable nodeStrokeWidth={3}/>
+            <Controls/>
+            <Background/>
+          </ReactFlow>
+        </div>
+        <Sidebar />
+      </div>
   );
 };
 
-export default CustomNodeFlow;
+
+export default () => (
+    <ReactFlowProvider>
+      <DnDProvider>
+        <CustomNodeFlow />
+      </DnDProvider>
+    </ReactFlowProvider>
+);

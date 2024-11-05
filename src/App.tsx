@@ -19,6 +19,7 @@ import TextToBinaryNode from "./nodes/TextToBinaryNode.tsx";
 import XorNode from "./nodes/XorNode.tsx";
 import CommentNode from './nodes/CommentNode.tsx';
 import BinaryToText from "./nodes/BinaryToText.tsx";
+import SplitNode from "./nodes/SplitNode.tsx";
 
 import {DnDProvider, useDnD} from "./DnDContext.tsx";
 import Sidebar from "./Sidebar.tsx";
@@ -30,6 +31,7 @@ const nodeTypes = {
   xor: XorNode,
   comment: CommentNode,
   b2text: BinaryToText,
+  split: SplitNode,
 };
 
 const initNodes: MyNode[] = [
@@ -115,57 +117,67 @@ const initEdges: Edge[] = [
   {
     id: 't1-2b1',
     source: 't1',
+    sourceHandle:'text',
     target: '2b1',
   },
   {
     id: 't2-2b2',
     source: 't2',
+    sourceHandle:'text',
     target: '2b2',
   },
   {
     id: 't3-2b3',
     source: 't3',
+    sourceHandle:'text',
     target: '2b3',
   },
   {
     id: '2b1-x1',
     source: '2b1',
+    sourceHandle:'bytes',
     target: 'x1',
   },
   {
     id: '2b2-x1',
     source: '2b2',
+    sourceHandle:'bytes',
     target: 'x1',
   },
   {
     id: '2b3-x1',
     source: '2b3',
+    sourceHandle:'bytes',
     target: 'x1',
   },
   {
     id: '2b1-r1',
     source: '2b1',
+    sourceHandle:'bytes',
     target: 'r1',
   },
   {
     id: '2b2-r1',
     source: '2b2',
+    sourceHandle:'bytes',
     target: 'r1',
   },
   {
     id: '2b3-r1',
     source: '2b3',
+    sourceHandle:'bytes',
     target: 'r1',
   },
   {
     id: 'x1-r2',
     source: 'x1',
+    sourceHandle:'bytes',
     target: 'r2',
   },
 ];
 
-let id = 0;
-const getId = () => `dndnode_${id++}`;
+let id = initNodes.length;
+const getId = () => `node_${id++}`;
 
 const CustomNodeFlow = () => {
   const reactFlowWrapper = useRef(null);
@@ -202,9 +214,8 @@ const CustomNodeFlow = () => {
           id: getId(),
           type,
           position,
-          data: {bytes: [0] },
+          data: { },
         };
-        console.log(newNode);
         setNodes((nds) => nds.concat(newNode));
       },
       [screenToFlowPosition, type],

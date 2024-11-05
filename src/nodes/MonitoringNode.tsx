@@ -29,7 +29,7 @@ function MonitoringNode() {
             <Handle type="target" position={Position.Top} />
             <div>
                 Incoming texts:{' '}
-                {nodesData.map(({ data }:Pick<MyNode,any>, i) => <div key={i}>{  data.text == null ?  data.bytes.toString() : data.text}</div>) ||
+                {nodesData.map(({ data }:Pick<MyNode,any>, i) => <div key={i}>{ data[connections.at(i).sourceHandle]?.toString()}</div>) ||
                     'none'}
             </div>
         </div>

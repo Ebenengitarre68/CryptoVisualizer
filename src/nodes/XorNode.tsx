@@ -23,8 +23,7 @@ function XorNode({ id }: NodeProps) {
     useEffect(() => {
         if(nodesData.length === 0) return;
         if(nodesData.length === 1) {
-            updateNodeData(id, { bytes: nodesData[0].data.bytes });
-            console.log(nodesData[0].data.bytes);
+            updateNodeData(id, { bytes: nodesData[0].data[connections.at(0).sourceHandle] });
             return;
         }
         let offset:number = 0;
@@ -32,11 +31,11 @@ function XorNode({ id }: NodeProps) {
             offset++
         }
 
-        let content = [...nodesData[offset].data.bytes];
+        let content = [...nodesData[offset].data[connections.at(0).sourceHandle]];
         for (let i:number = offset + 1; i < nodesData.length; i++) {
             if (nodesData[i].type == 'text'){continue}
             for (let j:number = 0; j < content.length; j++) {
-                content[j] = content[j] ^ nodesData[i].data.bytes[j];
+                content[j] = content[j] ^ nodesData[i].data[connections.at(i).sourceHandle][j];
             }
         }
         updateNodeData(id, { bytes:  content});
@@ -56,7 +55,7 @@ function XorNode({ id }: NodeProps) {
                 position={Position.Top}
             />
             <div>⊕</div>
-            <Handle type="source" position={Position.Bottom} />
+            <Handle id="bytes" type="source" position={Position.Bottom} />
         </div>
     );
 }

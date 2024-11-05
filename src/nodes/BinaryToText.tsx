@@ -21,7 +21,7 @@ function BinaryToText({ id }: NodeProps) {
     useEffect(() => {
         if(binaryNode !== null) {
             let result:string = ""
-            let data = binaryNode.data.bytes;
+            let data = binaryNode.data[connections.at(0).sourceHandle] ;
             for (let i = 0; i < data.length; i++) {
                 result += String.fromCharCode(data[i]);
             }
@@ -45,7 +45,7 @@ function BinaryToText({ id }: NodeProps) {
                 isConnectable={connections.length === 0}
             />
             <div>binary to text</div>
-            <Handle type="source" position={Position.Bottom} />
+            <Handle id="text" type="source" position={Position.Bottom} />
         </div>
     );
 }

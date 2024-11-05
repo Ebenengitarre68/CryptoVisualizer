@@ -28,7 +28,7 @@ function TextNode({ id, data }: NodeProps<Node<{ text: string }>>) {
                     style={{ display: 'block' }}
                 />
             </div>
-            <Handle type="source" position={Position.Bottom} />
+            <Handle id="text" type="source" position={Position.Bottom} />
         </div>
     );
 }

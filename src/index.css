@@ -79,3 +79,14 @@ body {
     max-width: 500px;
   }
 }
+
+.edgelabel {
+  width: fit-content;
+  height: fit-content;
+  padding: 4px;
+  background: #eee;
+  border: 1px solid #fff;
+  border-radius: 100%;
+  font-size: 12px;
+  line-height: 1;
+}

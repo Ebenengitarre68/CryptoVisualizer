@@ -23,6 +23,7 @@ import SplitNode from "./nodes/SplitNode.tsx";
 
 import {DnDProvider, useDnD} from "./DnDContext.tsx";
 import Sidebar from "./Sidebar.tsx";
+import DisplayEdge from "./edges/DisplayEdge.tsx";
 
 const nodeTypes = {
   text: TextNode,
@@ -32,6 +33,10 @@ const nodeTypes = {
   comment: CommentNode,
   b2text: BinaryToText,
   split: SplitNode,
+};
+
+const edgeTypes = {
+  display: DisplayEdge,
 };
 
 const initNodes: MyNode[] = [
@@ -119,6 +124,7 @@ const initEdges: Edge[] = [
     source: 't1',
     sourceHandle:'text',
     target: '2b1',
+    type:'display',
   },
   {
     id: 't2-2b2',
@@ -143,6 +149,7 @@ const initEdges: Edge[] = [
     source: '2b2',
     sourceHandle:'bytes',
     target: 'x1',
+    type:'display',
   },
   {
     id: '2b3-x1',
@@ -231,8 +238,10 @@ const CustomNodeFlow = () => {
               onEdgesChange={onEdgesChange}
               onConnect={onConnect}
               nodeTypes={nodeTypes}
+              edgeTypes={edgeTypes}
               onDrop={onDrop}
               onDragOver={onDragOver}
+
               fitView
           >
             <MiniMap zoomable pannable nodeStrokeWidth={3}/>

@@ -2,13 +2,12 @@ import React, {useContext} from 'react';
 import {
     BaseEdge,
     getBezierPath,
-    useReactFlow,
     type EdgeProps, EdgeLabelRenderer, useNodesData,
 } from '@xyflow/react';
 
 
 export default function DisplayEdge({
-                                        id,
+                                        data,
                                         sourceX,
                                         sourceY,
                                         targetX,
@@ -32,11 +31,11 @@ export default function DisplayEdge({
 
 
 
-    return (
+    return data != null && data?.["monitor"] == true ?(
         <>
             <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />
             <EdgeLabelRenderer>
-                <div
+                 <div
                     style={{
                         position: 'absolute',
                         transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
@@ -51,5 +50,14 @@ export default function DisplayEdge({
                 </div>
             </EdgeLabelRenderer>
         </>
-    );
+    )  :
+        (
+            <>
+                <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />
+            </>
+        )
+
+
+
+        ;
 }

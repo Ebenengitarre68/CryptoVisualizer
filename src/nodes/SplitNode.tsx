@@ -21,10 +21,12 @@ function SplitNode({id, data}: NodeProps) {
     );
     let width:number = data.outputs * 25 + 5;
     const uppdateHandles = useCallback(()=>{
-        if( data.out >= 2){
-            updateNodeData(id, {outputs:data.out})
-        } else {
+        if( data.out < 2){
             updateNodeData(id, {outputs:2})
+        } else if ( data.out >= 512 ) {
+            updateNodeData(id, {outputs:512})
+        } else {
+            updateNodeData(id, {outputs:data.out})
         }
         useUpdateNodeInternals()
     })
@@ -68,7 +70,7 @@ function SplitNode({id, data}: NodeProps) {
             <div style={{textAlign:"center"}}>Split Node</div>
             <div><input onChange={evt => {
                 data.out = evt.target.value;
-            }} type="number" min="2" style={{width: 50}}/> Outputs (min 2)</div>
+            }} type="number" min="2" max = "512" style={{width: 50}}/> Outputs (min 2, max 512)</div>
             <input type="button" value="save" onClick={ uppdateHandles } />
         </div>
     ) : (

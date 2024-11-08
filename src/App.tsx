@@ -1,4 +1,4 @@
-import React, {useCallback, useRef} from 'react';
+import React, {useCallback, useRef, useState} from 'react';
 import {
   ReactFlow,
   Controls,
@@ -24,6 +24,7 @@ import SplitNode from "./nodes/SplitNode.tsx";
 import {DnDProvider, useDnD} from "./DnDContext.tsx";
 import Sidebar from "./Sidebar.tsx";
 import DisplayEdge from "./edges/DisplayEdge.tsx";
+import ContextMenu from "./edges/ContextMenu.tsx";
 
 const nodeTypes = {
   text: TextNode,
@@ -37,6 +38,11 @@ const nodeTypes = {
 
 const edgeTypes = {
   display: DisplayEdge,
+};
+
+const defaultEdgeOptions = {
+  animated: false,
+  type: 'display',
 };
 
 const initNodes: MyNode[] = [
@@ -124,7 +130,6 @@ const initEdges: Edge[] = [
     source: 't1',
     sourceHandle:'text',
     target: '2b1',
-    type:'display',
   },
   {
     id: 't2-2b2',
@@ -192,6 +197,8 @@ const CustomNodeFlow = () => {
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
   const { screenToFlowPosition } = useReactFlow();
   const [type] = useDnD();
+  const [menu, setMenu] = useState(null);
+  const ref = useRef(null);
 
 
   const onConnect: OnConnect = useCallback(
@@ -203,6 +210,26 @@ const CustomNodeFlow = () => {
     event.preventDefault();
     event.dataTransfer.dropEffect = 'move';
   }, []);
+
+  const onEdgeContextMenu = useCallback(
+      (event, edge) => {
+        // Prevent native context menu from showing
+        event.preventDefault();
+
+        // Calculate position of the context menu. We want to make sure it
+        // doesn't get positioned off-screen.
+        const pane = ref.current.getBoundingClientRect();
+        setMenu({
+          id: edge.id,
+          top: event.clientY < pane.height - 200 && event.clientY,
+          left: event.clientX < pane.width - 200 && event.clientX,
+          right: event.clientX >= pane.width - 200 && pane.width - event.clientX,
+          bottom:
+              event.clientY >= pane.height - 200 && pane.height - event.clientY,
+        });
+      },
+      [setMenu],
+  )
 
   const onDrop = useCallback(
       (event) => {
@@ -228,10 +255,15 @@ const CustomNodeFlow = () => {
       [screenToFlowPosition, type],
   );
 
+  // Close the context menu if it's open whenever the window is clicked.
+  const onPaneClick = useCallback(() => setMenu(null), [setMenu]);
+
+
   return (
-      <div className="dndflow">
-        <div className="reactflow-wrapper" ref={reactFlowWrapper}>
+      <div className="dndflow" onClick={onPaneClick}>
+        <div className="reactflow-wrapper"  ref={reactFlowWrapper}>
           <ReactFlow
+              ref = {ref}
               nodes={nodes}
               edges={edges}
               onNodesChange={onNodesChange}
@@ -241,13 +273,16 @@ const CustomNodeFlow = () => {
               edgeTypes={edgeTypes}
               onDrop={onDrop}
               onDragOver={onDragOver}
-
               fitView
+              onEdgeContextMenu={onEdgeContextMenu}
+              defaultEdgeOptions={defaultEdgeOptions}
           >
             <MiniMap zoomable pannable nodeStrokeWidth={3}/>
             <Controls/>
             <Background/>
+            {menu && <ContextMenu {...menu}/>}
           </ReactFlow>
+
         </div>
         <Sidebar />
       </div>

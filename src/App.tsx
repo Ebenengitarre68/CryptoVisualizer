@@ -26,6 +26,8 @@ import {DnDProvider, useDnD} from "./DnDContext.tsx";
 import Sidebar from "./Sidebar.tsx";
 import DisplayEdge from "./edges/DisplayEdge.tsx";
 import ContextMenu from "./edges/ContextMenu.tsx";
+import {Simulate} from "react-dom/test-utils";
+import select = Simulate.select;
 
 const nodeTypes = {
   text: TextNode,
@@ -267,9 +269,7 @@ const CustomNodeFlow = () => {
   };
 
   const onSave = useCallback(() => {
-    console.log('onSave');
     if (rfInstance) {
-      console.log("onSave2")
       const flow = rfInstance.toObject();
       const blob = new Blob([JSON.stringify(flow)],{type: 'text/plain'});
       const url = window.URL.createObjectURL(blob);
@@ -322,7 +322,10 @@ const CustomNodeFlow = () => {
               <div className="nav-panel">
                 <button className="nav-button" onClick={onEmptyNew}>Empty</button>
                 <button className="nav-button" onClick={onSave}>Download</button>
-                <button className="nav-button">Test</button>
+                <select name="algorithm" className="nav-button">
+                  <option selected  hidden>Select Algorithm</option>
+                  <option>AES 128</option>
+                </select>
                 <select className="nav-button" onChange={onChange} data-testid="colormode-select">
                   <option value="light">Light</option>
                   <option value="dark">Dark</option>

@@ -14,7 +14,14 @@ export default () => {
             <div className="description">You can drag these nodes to the pane on the left. The blues bordered are input,
                 the red bordered are output and the black are calculation
             </div>
-            <div style={{overflow: 'scroll'}}>
+            <hr/>
+            <div style={
+                {
+                    overflow: 'scroll',
+                    display: "grid",
+                    gridTemplateColumns: "1fr 1fr",
+                    gridGap: "10px",
+            }}>
                 <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'text')} draggable>
                     Text input Node
                 </div>

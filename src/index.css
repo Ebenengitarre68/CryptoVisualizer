@@ -3,7 +3,6 @@
   line-height: 1.5;
   font-weight: 400;
 }
-
 html,
 body,
 #root {
@@ -38,13 +37,15 @@ body {
 
 .dndflow aside .description {
   margin-bottom: 10px;
+  color: #222;
+  padding: 10px;
 }
 
 .dndflow .dndnode {
   height: 20px;
   padding: 4px;
   border: 1px solid #1a192b;
-  border-radius: 2px;
+  border-radius: 4px;
   margin-bottom: 10px;
   display: flex;
   justify-content: center;
@@ -110,4 +111,23 @@ body {
 
 .context-menu button:hover {
   background: rgb(255, 255, 255);
+}
+
+.nav-panel{
+  padding: 10px;
+  background: #eaeaea;
+  border-radius: 4px;
+}
+
+
+.nav-button {
+  background-color: #cdcdcd;
+  color: black;
+  font-size: 16px;
+  border: none;
+}
+
+.nav-button:hover {
+  background-color: white;
+  color: black;
 }

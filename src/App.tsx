@@ -1,13 +1,14 @@
-import React, {useCallback, useRef, useState} from 'react';
+import React, {ChangeEventHandler, useCallback, useRef, useState} from 'react';
 import {
   ReactFlow,
+  ReactFlowProvider,
   Controls,
   addEdge,
   useNodesState,
   useEdgesState,
   Background,
   type Edge,
-  type OnConnect, MiniMap, useReactFlow, ReactFlowProvider,
+  type OnConnect, MiniMap, useReactFlow, Panel, ColorMode,
 } from '@xyflow/react';
 
 import '@xyflow/react/dist/style.css';
@@ -192,13 +193,16 @@ let id = initNodes.length;
 const getId = () => `node_${id++}`;
 
 const CustomNodeFlow = () => {
+  const [colorMode, setColorMode] = useState<ColorMode>('light');
   const reactFlowWrapper = useRef(null);
   const [nodes,setNodes , onNodesChange] = useNodesState(initNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
   const { screenToFlowPosition } = useReactFlow();
   const [type] = useDnD();
   const [menu, setMenu] = useState(null);
+  const [rfInstance, setRfInstance] = useState(null);
   const ref = useRef(null);
+  const { setViewport } = useReactFlow();
 
 
   const onConnect: OnConnect = useCallback(
@@ -258,21 +262,54 @@ const CustomNodeFlow = () => {
   // Close the context menu if it's open whenever the window is clicked.
   const onPaneClick = useCallback(() => setMenu(null), [setMenu]);
 
+  const onChange: ChangeEventHandler<HTMLSelectElement> = (evt) => {
+    setColorMode(evt.target.value as ColorMode);
+  };
+
+  const onSave = useCallback(() => {
+    console.log('onSave');
+    if (rfInstance) {
+      console.log("onSave2")
+      const flow = rfInstance.toObject();
+      const blob = new Blob([JSON.stringify(flow)],{type: 'text/plain'});
+      const url = window.URL.createObjectURL(blob);
+      const link = document.createElement("a");
+      link.download = "flow.json";
+      link.href = url;
+      link.click();
+      }
+  }, [rfInstance]);
+
+  const onEmptyNew = useCallback(() => {
+    const restoreFlow = async () => {
+      const x = 0;
+      const y = 0;
+      const zoom = 1 ;
+      setNodes([]);
+      setEdges([]);
+      setViewport({ x, y, zoom });
+    };
+
+    restoreFlow();
+  }, [setNodes, setViewport]);
 
   return (
       <div className="dndflow" onClick={onPaneClick}>
         <div className="reactflow-wrapper"  ref={reactFlowWrapper}>
+
           <ReactFlow
               ref = {ref}
               nodes={nodes}
               edges={edges}
               onNodesChange={onNodesChange}
               onEdgesChange={onEdgesChange}
+              onInit={setRfInstance}
               onConnect={onConnect}
               nodeTypes={nodeTypes}
               edgeTypes={edgeTypes}
               onDrop={onDrop}
               onDragOver={onDragOver}
+              colorMode={colorMode}
               fitView
               onEdgeContextMenu={onEdgeContextMenu}
               defaultEdgeOptions={defaultEdgeOptions}
@@ -281,10 +318,23 @@ const CustomNodeFlow = () => {
             <Controls/>
             <Background/>
             {menu && <ContextMenu {...menu}/>}
+            <Panel>
+              <div className="nav-panel">
+                <button className="nav-button" onClick={onEmptyNew}>Empty</button>
+                <button className="nav-button" onClick={onSave}>Download</button>
+                <button className="nav-button">Test</button>
+                <select className="nav-button" onChange={onChange} data-testid="colormode-select">
+                  <option value="light">Light</option>
+                  <option value="dark">Dark</option>
+                  <option value="system">System</option>
+                </select>
+              </div>
+            </Panel>
           </ReactFlow>
 
+
         </div>
-        <Sidebar />
+        <Sidebar/>
       </div>
   );
 };
@@ -293,7 +343,7 @@ const CustomNodeFlow = () => {
 export default () => (
     <ReactFlowProvider>
       <DnDProvider>
-        <CustomNodeFlow />
+        <CustomNodeFlow/>
       </DnDProvider>
     </ReactFlowProvider>
 );

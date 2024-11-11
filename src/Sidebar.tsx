@@ -4,7 +4,7 @@ import { useDnD } from './DnDContext';
 export default () => {
     const [_, setType] = useDnD();
 
-    const onDragStart = (event, nodeType) => {
+    const onDragStart = (event:any, nodeType:any) => {
         setType(nodeType);
         event.dataTransfer.effectAllowed = 'move';
     };

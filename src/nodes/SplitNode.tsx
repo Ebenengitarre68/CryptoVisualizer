@@ -1,4 +1,4 @@
-import {memo, useCallback, useEffect, useMemo} from 'react';
+import {memo, useCallback, useEffect} from 'react';
 import {
     Handle,
     type NodeProps,
@@ -20,6 +20,7 @@ function SplitNode({id, data}: NodeProps) {
         connections.map((connection) => connection.source),
     );
     let width:number = data.outputs * 25 + 5;
+
     const uppdateHandles = useCallback(()=>{
         if( data.out < 2){
             updateNodeData(id, {outputs:2})

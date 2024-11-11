@@ -1,9 +1,14 @@
 # TODO
 
-## Categories?
+# Algorithms to implement
 
-## Splitter Node 1:n
-* n configurable
+## AES
+
+## Some Hash Function
+
+# Others
+
+## Node Categories?
 
 ## Join node n:1
 * n configurable
@@ -18,7 +23,7 @@
 * Configurable Length
 
 ## Toolbar With list of choose able Graphs
-### Export
+### Exportcd
 + Png / Jpg
 + svg
 ### Choosable Graphs

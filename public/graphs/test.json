@@ -1,0 +1,227 @@
+{
+  "nodes": [
+    {
+      "id": "t1",
+      "type": "text",
+      "data": {
+        "text": "hello"
+      },
+      "position": {
+        "x": 0,
+        "y": 0
+      },
+      "measured": {
+        "width": 178,
+        "height": 65
+      }
+    },
+    {
+      "id": "t2",
+      "type": "text",
+      "data": {
+        "text": "tothe"
+      },
+      "position": {
+        "x": 200,
+        "y": 0
+      },
+      "measured": {
+        "width": 178,
+        "height": 65
+      }
+    },
+    {
+      "id": "t3",
+      "type": "text",
+      "data": {
+        "text": "world"
+      },
+      "position": {
+        "x": 400,
+        "y": 0
+      },
+      "measured": {
+        "width": 178,
+        "height": 65
+      }
+    },
+    {
+      "id": "2b1",
+      "type": "t2binary",
+      "data": {
+        "bytes": [
+          104,
+          101,
+          108,
+          108,
+          111
+        ]
+      },
+      "position": {
+        "x": 50,
+        "y": 100
+      },
+      "measured": {
+        "width": 87,
+        "height": 38
+      }
+    },
+    {
+      "id": "2b2",
+      "type": "t2binary",
+      "data": {
+        "bytes": [
+          116,
+          111,
+          116,
+          104,
+          101
+        ]
+      },
+      "position": {
+        "x": 250,
+        "y": 100
+      },
+      "measured": {
+        "width": 87,
+        "height": 38
+      }
+    },
+    {
+      "id": "2b3",
+      "type": "t2binary",
+      "data": {
+        "bytes": [
+          119,
+          111,
+          114,
+          108,
+          100
+        ]
+      },
+      "position": {
+        "x": 450,
+        "y": 100
+      },
+      "measured": {
+        "width": 87,
+        "height": 38
+      }
+    },
+    {
+      "id": "x1",
+      "type": "xor",
+      "data": {
+        "bytes": [
+          107,
+          101,
+          106,
+          104,
+          110
+        ]
+      },
+      "position": {
+        "x": 250,
+        "y": 200
+      },
+      "measured": {
+        "width": 21,
+        "height": 38
+      }
+    },
+    {
+      "id": "r1",
+      "type": "monitor",
+      "data": {},
+      "position": {
+        "x": 0,
+        "y": 300
+      },
+      "measured": {
+        "width": 135,
+        "height": 92
+      }
+    },
+    {
+      "id": "r2",
+      "type": "monitor",
+      "data": {},
+      "position": {
+        "x": 200,
+        "y": 300
+      },
+      "measured": {
+        "width": 136,
+        "height": 56
+      }
+    }
+  ],
+  "edges": [
+    {
+      "id": "t1-2b1",
+      "source": "t1",
+      "sourceHandle": "text",
+      "target": "2b1"
+    },
+    {
+      "id": "t2-2b2",
+      "source": "t2",
+      "sourceHandle": "text",
+      "target": "2b2"
+    },
+    {
+      "id": "t3-2b3",
+      "source": "t3",
+      "sourceHandle": "text",
+      "target": "2b3"
+    },
+    {
+      "id": "2b1-x1",
+      "source": "2b1",
+      "sourceHandle": "bytes",
+      "target": "x1"
+    },
+    {
+      "id": "2b2-x1",
+      "source": "2b2",
+      "sourceHandle": "bytes",
+      "target": "x1",
+      "type": "display"
+    },
+    {
+      "id": "2b3-x1",
+      "source": "2b3",
+      "sourceHandle": "bytes",
+      "target": "x1"
+    },
+    {
+      "id": "2b1-r1",
+      "source": "2b1",
+      "sourceHandle": "bytes",
+      "target": "r1"
+    },
+    {
+      "id": "2b2-r1",
+      "source": "2b2",
+      "sourceHandle": "bytes",
+      "target": "r1"
+    },
+    {
+      "id": "2b3-r1",
+      "source": "2b3",
+      "sourceHandle": "bytes",
+      "target": "r1"
+    },
+    {
+      "id": "x1-r2",
+      "source": "x1",
+      "sourceHandle": "bytes",
+      "target": "r2"
+    }
+  ],
+  "viewport": {
+    "x": 208.0388026607539,
+    "y": 125.01441241685146,
+    "zoom": 1.0033259423503325
+  }
+}

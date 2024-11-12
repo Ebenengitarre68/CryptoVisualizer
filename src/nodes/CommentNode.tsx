@@ -1,4 +1,4 @@
-import React, { memo, useEffect,useState } from 'react';
+import React, { memo } from 'react';
 import {
     type NodeProps,
     type Node, useReactFlow,

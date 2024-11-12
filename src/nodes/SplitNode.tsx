@@ -72,7 +72,7 @@ function SplitNode({id, data}: NodeProps) {
             <div><input onChange={evt => {
                 data.out = evt.target.value;
             }} type="number" min="2" max = "512" style={{width: 50}}/> Outputs (min 2, max 512)</div>
-            <input type="button" value="save" onClick={ uppdateHandles } />
+            <button className="node-button" onClick={ uppdateHandles } >Save</button>
         </div>
     ) : (
         <div

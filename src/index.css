@@ -117,15 +117,26 @@ body {
 .nav-panel{
   padding: 10px;
   background: #eaeaea;
-  border-radius: 4px;
+  border-radius: 10px;
 }
 
 
 .nav-button {
-  background-color: #cdcdcd;
+  background-color: #dcdbdb;
+  padding: 5px;
   color: black;
-  font-size: 16px;
+  font-size: 20px;
   border: none;
+}
+
+.left-nav-button{
+  border-bottom-left-radius: 5px;
+  border-top-left-radius: 5px;
+}
+
+.right-nav-button{
+  border-bottom-right-radius: 5px;
+  border-top-right-radius: 5px;
 }
 
 .nav-button:hover {
@@ -134,7 +145,6 @@ body {
 }
 
 .nav-button .dropbutton {
-  font-size: 16px;
   border: none;
   outline: none;
   color: white;
@@ -155,4 +165,15 @@ body {
 
 .dropdown-content li:hover {
   background-color: #ddd;
+}
+
+.node-button{
+  border-width: 0px;
+  background-color: #dcdbdb;
+  margin-top: 5px;
+  padding: 4px;
+  border-radius: 4px;
+}
+.node-button:hover {
+  background-color: white;
 }

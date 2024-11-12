@@ -264,10 +264,6 @@ const CustomNodeFlow = () => {
   // Close the context menu if it's open whenever the window is clicked.
   const onPaneClick = useCallback(() => setMenu(null), [setMenu]);
 
-  const onChange: ChangeEventHandler<HTMLSelectElement> = (evt) => {
-    setColorMode(evt.target.value as ColorMode);
-  };
-
   const onSave = useCallback(() => {
     if (rfInstance) {
       const flow = rfInstance.toObject();
@@ -320,17 +316,13 @@ const CustomNodeFlow = () => {
             {menu && <ContextMenu {...menu}/>}
             <Panel>
               <div className="nav-panel">
-                <button className="nav-button" onClick={onEmptyNew}>Empty</button>
+                <button className="nav-button left-nav-button" onClick={onEmptyNew}>Empty</button>
                 <button className="nav-button" onClick={onSave}>Download</button>
-                <select name="algorithm" className="nav-button">
+                <select name="algorithm" className="nav-button right-nav-button">
                   <option selected  hidden>Select Algorithm</option>
                   <option>AES 128</option>
                 </select>
-                <select className="nav-button" onChange={onChange} data-testid="colormode-select">
-                  <option value="light">Light</option>
-                  <option value="dark">Dark</option>
-                  <option value="system">System</option>
-                </select>
+
               </div>
             </Panel>
           </ReactFlow>

@@ -22,11 +22,7 @@ function CommentNode({ id, data}: NodeProps<Node<{ text: string }>>) {
                 value={data.text}
                 style={{display: 'block'}}
             />
-            <input
-                type="button"
-                value="Save"
-                onClick={()=>updateNodeData(id, {text:helper})}
-            />
+            <button className="node-button" onClick={()=>updateNodeData(id, {text:helper})}>Save</button>
 
         </div>
     ) : (

@@ -29,9 +29,6 @@
 ### Choosable Graphs
 * AES
 * ...
-* Blank
 * Upload
 
-
-### Save and download
 

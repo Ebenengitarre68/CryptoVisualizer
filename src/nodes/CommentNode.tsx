@@ -9,13 +9,7 @@ function CommentNode({ id, data}: NodeProps<Node<{ text: string }>>) {
     let helper:string = ""
     return data.text == null ? (
         <div
-            style={{
-                background: '#eee',
-                color: '#222',
-                padding: 10,
-                fontSize: 12,
-                borderRadius: 10,
-            }}
+            className="node"
         >
             <input
                 onChange={(evt) => helper = evt.target.value}
@@ -27,13 +21,7 @@ function CommentNode({ id, data}: NodeProps<Node<{ text: string }>>) {
         </div>
     ) : (
         <div
-            style={{
-                background: '#eee',
-                color: '#222',
-                padding: 10,
-                fontSize: 12,
-                borderRadius: 10,
-            }}
+            className="node"
         >
             {data.text}
         </div>

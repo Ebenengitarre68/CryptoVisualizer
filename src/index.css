@@ -174,3 +174,11 @@ body {
 .node-button:hover {
   background-color: white;
 }
+
+.node {
+  background: #eee;
+  padding: 10px;
+  font-size: 12px;
+  border-radius: 10px;
+}
+

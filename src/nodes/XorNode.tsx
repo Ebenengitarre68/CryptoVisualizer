@@ -43,12 +43,7 @@ function XorNode({ id }: NodeProps) {
 
     return (
         <div
-            style={{
-                background: '#eee',
-                color: '#222',
-                fontSize: 25,
-                borderRadius: 10,
-            }}
+            className="node"
         >
             <Handle
                 type="target"

@@ -29,15 +29,11 @@ function BinaryToText({ id }: NodeProps) {
         }
     }, [binaryNode]);
 
+
+
     return (
         <div
-            style={{
-                background: '#eee',
-                color: '#222',
-                padding: 10,
-                fontSize: 12,
-                borderRadius: 10,
-            }}
+            className="node"
         >
             <Handle
                 type="target"

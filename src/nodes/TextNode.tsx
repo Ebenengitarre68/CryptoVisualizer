@@ -12,13 +12,7 @@ function TextNode({ id, data }: NodeProps<Node<{ text: string }>>) {
 
     return (
         <div
-            style={{
-                background: '#eee',
-                color: '#222',
-                padding: 10,
-                fontSize: 12,
-                borderRadius: 10,
-            }}
+            className="node"
         >
             <div>Text input Node</div>
             <div style={{ marginTop: 5 }}>

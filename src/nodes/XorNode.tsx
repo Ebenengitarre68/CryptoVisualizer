@@ -44,6 +44,7 @@ function XorNode({ id }: NodeProps) {
     return (
         <div
             className="node"
+            style={{fontSize: 25, padding: 4}}
         >
             <Handle
                 type="target"

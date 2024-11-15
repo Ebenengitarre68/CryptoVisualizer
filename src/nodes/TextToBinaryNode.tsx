@@ -19,6 +19,7 @@ function TextToBinaryNode({ id }: NodeProps) {
     const textNode = isTextNode(nodesData) ? nodesData : null;
 
     useEffect(() => {
+        console.log(connections);
         updateNodeData(id, { bytes:  Array.from(textNode !== null ? textNode.data.text : '', char => char.charCodeAt(0))});
     }, [textNode]);
 
@@ -28,7 +29,6 @@ function TextToBinaryNode({ id }: NodeProps) {
         >
             <Handle
                 type="target"
-                id="bytes"
                 position={Position.Top}
                 isConnectable={connections.length === 0}
             />

@@ -25,6 +25,9 @@ export default () => {
                 <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'text')} draggable>
                     Text input Node
                 </div>
+                <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'random')} draggable>
+                    Random Gen Node
+                </div>
                 <div className="dndnode output" onDragStart={(event) => onDragStart(event, 'monitor')} draggable>
                     Monitor Node
                 </div>

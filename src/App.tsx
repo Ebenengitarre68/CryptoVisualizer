@@ -182,6 +182,7 @@ const CustomNodeFlow = () => {
         setNodes(flow.nodes || []);
         setEdges(flow.edges || []);
         setViewport({x, y, zoom});
+        id = flow.nodes.length
       }
     };
     fetch(path)

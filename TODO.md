@@ -19,14 +19,14 @@
 ## Salting node
 * Configurable output Length, second input for salt
 
-## Random Generator node 
-* Configurable Length
-
 ## Toolbar With list of choose able Graphs
-### Exportcd
+
+### Export
 + Png / Jpg
 + svg
-### Choosable Graphs
+
+
+### Choose-able Graphs
 * AES
 * ...
 * Upload

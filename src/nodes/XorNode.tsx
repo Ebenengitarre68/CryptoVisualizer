@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import {
     Position,
     Handle,
@@ -9,6 +9,7 @@ import {
 } from '@xyflow/react';
 
 import {  type MyNode } from './utils';
+import {BaseNode} from "@/components/base-node.tsx";
 
 function XorNode({ id }: NodeProps) {
     const { updateNodeData } = useReactFlow();
@@ -42,7 +43,7 @@ function XorNode({ id }: NodeProps) {
     }, [nodesData]);
 
     return (
-        <div
+        <BaseNode
             className="node"
             style={{fontSize: 25, padding: 4}}
         >
@@ -52,7 +53,7 @@ function XorNode({ id }: NodeProps) {
             />
             <div>⊕</div>
             <Handle id="bytes" type="source" position={Position.Bottom} />
-        </div>
+        </BaseNode>
     );
 }
 

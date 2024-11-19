@@ -1,4 +1,4 @@
-import {memo, useCallback, useEffect} from 'react';
+import React, {memo, useCallback, useEffect} from 'react';
 import {
     Handle,
     type NodeProps,
@@ -10,6 +10,7 @@ import {
 } from '@xyflow/react';
 
 import { type MyNode} from './utils';
+import {BaseNode} from "@/components/base-node.tsx";
 
 function SplitNode({id, data}: NodeProps) {
     const { updateNodeData } = useReactFlow();
@@ -52,7 +53,7 @@ function SplitNode({id, data}: NodeProps) {
     }, [nodesData]);
 
     return data.outputs == null?(
-        <div
+        <BaseNode
             className="node"
         >
             <Handle
@@ -66,9 +67,9 @@ function SplitNode({id, data}: NodeProps) {
                 data.out = evt.target.value;
             }} type="number" min="2" max = "512" style={{width: 50}}/> Outputs (min 2, max 512)</div>
             <button className="node-button" onClick={ uppdateHandles } >Save</button>
-        </div>
+        </BaseNode>
     ) : (
-        <div
+        <BaseNode
             className="node"
             style={{
                 width: width,
@@ -82,7 +83,7 @@ function SplitNode({id, data}: NodeProps) {
 
             <div style={{textAlign:"center"}}>Split Node</div>
             {Array.from({ length:data.outputs}).map((_:unknown,index:number) => {
-                let helper:number = index * 25 + 25;
+                let helper:number = index * 25 + 15;
                 data[String(index)]=[];
                 return (<Handle
                 type="source"
@@ -91,7 +92,7 @@ function SplitNode({id, data}: NodeProps) {
                 style={{left: helper}}
                 />)
             })}
-        </div>
+        </BaseNode>
     );
 }
 

@@ -1,4 +1,4 @@
-import { memo, useEffect } from 'react';
+import React, { memo, useEffect } from 'react';
 import {
     Position,
     Handle,
@@ -9,6 +9,7 @@ import {
 } from '@xyflow/react';
 
 import {isTextNode, type MyNode} from './utils';
+import {BaseNode} from "@/components/base-node.tsx";
 
 function BinaryToText({ id }: NodeProps) {
     const { updateNodeData } = useReactFlow();
@@ -32,7 +33,7 @@ function BinaryToText({ id }: NodeProps) {
 
 
     return (
-        <div
+        <BaseNode
             className="node"
         >
             <Handle
@@ -42,7 +43,7 @@ function BinaryToText({ id }: NodeProps) {
             />
             <div>binary to text</div>
             <Handle id="text" type="source" position={Position.Bottom} />
-        </div>
+        </BaseNode>
     );
 }
 

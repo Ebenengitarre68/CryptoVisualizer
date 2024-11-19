@@ -3,12 +3,13 @@ import {
     type NodeProps,
     type Node, useReactFlow,
 } from '@xyflow/react';
+import {BaseNode} from "@/components/base-node.tsx";
 
 function CommentNode({ id, data}: NodeProps<Node<{ text: string }>>) {
     const { updateNodeData } = useReactFlow();
     let helper:string = ""
     return data.text == null ? (
-        <div
+        <BaseNode
             className="node"
         >
             <input
@@ -18,13 +19,13 @@ function CommentNode({ id, data}: NodeProps<Node<{ text: string }>>) {
             />
             <button className="node-button" onClick={()=>updateNodeData(id, {text:helper})}>Save</button>
 
-        </div>
+        </BaseNode>
     ) : (
-        <div
+        <BaseNode
             className="node"
         >
-            {data.text}
-        </div>
+            <div>{data.text}</div>
+        </BaseNode>
     );
 }
 

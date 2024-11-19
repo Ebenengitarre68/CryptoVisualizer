@@ -21,6 +21,7 @@ import XorNode from "./nodes/XorNode.tsx";
 import CommentNode from './nodes/CommentNode.tsx';
 import BinaryToText from "./nodes/BinaryToText.tsx";
 import SplitNode from "./nodes/SplitNode.tsx";
+import SaltingNode from "./nodes/SaltingNode.tsx";
 
 import {DnDProvider, useDnD} from "./DnDContext.tsx";
 import Sidebar from "./Sidebar.tsx";
@@ -39,6 +40,7 @@ const nodeTypes = {
   b2text: BinaryToText,
   split: SplitNode,
   random: RandomGenNode,
+  salt: SaltingNode
 };
 
 const edgeTypes = {
@@ -81,11 +83,11 @@ let id = initNodes.length;
 const getId = () => `node_${id++}`;
 
 const CustomNodeFlow = () => {
-  const [colorMode] = useState<ColorMode>('light');
+  const [colorMode, setColorMode] = useState<ColorMode>('system');
   const reactFlowWrapper = useRef(null);
   const [nodes,setNodes , onNodesChange] = useNodesState(initNodes);
   const [edges, setEdges, onEdgesChange] = useEdgesState(initEdges);
-  const { screenToFlowPosition } = useReactFlow();
+  const { screenToFlowPosition, fitView } = useReactFlow();
   const [type] = useDnD();
   const [menu, setMenu] = useState(null);
   const [rfInstance, setRfInstance] = useState(null);
@@ -162,12 +164,9 @@ const CustomNodeFlow = () => {
 
   const onEmptyNew = useCallback(() => {
     const restoreFlow = async () => {
-      const x = 320;
-      const y = 115;
-      const zoom = 2 ;
       setNodes(initNodes);
       setEdges(initEdges);
-      setViewport({ x, y, zoom });
+      fitView()
     };
     document.getElementById("algChanger").value ="default"
     restoreFlow();
@@ -178,10 +177,9 @@ const CustomNodeFlow = () => {
     const restoreFlow = async (json:string) => {
       const flow = json;
       if (flow) {
-        const {x = 0, y = 0, zoom = 1} = flow.viewport;
         setNodes(flow.nodes || []);
-        setEdges(flow.edges || []);
-        setViewport({x, y, zoom});
+        setEdges(flow.edges || [])
+        fitView()
         id = flow.nodes.length
       }
     };
@@ -197,6 +195,9 @@ const CustomNodeFlow = () => {
       onRestore(evt.target.value)
     }
   }
+  const onChange: ChangeEventHandler<HTMLSelectElement> = (evt) => {
+    setColorMode(evt.target.value as ColorMode);
+  };
 
   return (
       <div className="dndflow" onClick={onPaneClick}>
@@ -224,12 +225,18 @@ const CustomNodeFlow = () => {
             <Background/>
             {menu && <ContextMenu {...menu}/>}
             <Panel>
-              <div>
+              <div className="nav-div">
                 <button className="nav-button left-nav-button" onClick={onEmptyNew}>Empty</button>
                 <button className="nav-button" onClick={onSave}>Download</button>
-                <select id="algChanger" onChange={onAlgChange}  className="nav-button right-nav-button" defaultValue="default">
+                <select className="nav-button" onChange={onChange} data-testid="colormode-select">
+                  <option value="dark">Dark</option>
+                  <option value="light">Light</option>
+                  <option value="system">System</option>
+                </select>
+                <select id="algChanger" onChange={onAlgChange} className="nav-button right-nav-button"
+                        defaultValue="default">
                   <option value="default" hidden>Select Algorithm</option>
-                  <option value="/graphs/test.json" >Test</option>
+                  <option value="/graphs/test.json">Test</option>
                 </select>
 
               </div>

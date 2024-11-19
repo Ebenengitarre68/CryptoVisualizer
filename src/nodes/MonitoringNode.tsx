@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import {
     Handle,
     Position,
@@ -6,6 +6,7 @@ import {
     useNodesData,
 } from '@xyflow/react';
 import { type MyNode } from './utils';
+import {BaseNode} from "@/components/base-node.tsx";
 
 function MonitoringNode() {
     const connections = useHandleConnections({
@@ -17,7 +18,7 @@ function MonitoringNode() {
 
 
     return (
-        <div
+        <BaseNode
             className="node"
         >
             <Handle type="target" position={Position.Top} />
@@ -26,7 +27,7 @@ function MonitoringNode() {
                 {nodesData.map(({ data }:Pick<MyNode,any>, i) => <div key={i}>{ data[connections.at(i).sourceHandle]?.toString()}</div>) ||
                     'none'}
             </div>
-        </div>
+        </BaseNode>
     );
 }
 

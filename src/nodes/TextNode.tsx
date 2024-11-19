@@ -1,4 +1,4 @@
-import { memo } from 'react';
+import React, { memo } from 'react';
 import {
     Position,
     Handle,
@@ -6,12 +6,13 @@ import {
     type NodeProps,
     type Node,
 } from '@xyflow/react';
+import {BaseNode} from "@/components/base-node.tsx";
 
 function TextNode({ id, data }: NodeProps<Node<{ text: string }>>) {
     const { updateNodeData } = useReactFlow();
 
     return (
-        <div
+        <BaseNode
             className="node"
         >
             <div>Text input Node</div>
@@ -23,7 +24,7 @@ function TextNode({ id, data }: NodeProps<Node<{ text: string }>>) {
                 />
             </div>
             <Handle id="text" type="source" position={Position.Bottom} />
-        </div>
+        </BaseNode>
     );
 }
 

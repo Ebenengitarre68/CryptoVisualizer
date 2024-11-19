@@ -1,4 +1,4 @@
-import {memo, useCallback, useEffect} from 'react';
+import React, {memo, useCallback, useEffect} from 'react';
 import {
     Position,
     Handle,
@@ -6,6 +6,7 @@ import {
     type NodeProps,
     type Node,
 } from '@xyflow/react';
+import {BaseNode} from "@/components/base-node.tsx";
 
 function RandomGenNode({ id, data }: NodeProps<Node<{ text: string }>>) {
     const { updateNodeData } = useReactFlow();
@@ -21,7 +22,7 @@ function RandomGenNode({ id, data }: NodeProps<Node<{ text: string }>>) {
         updateNodeData(id, {bytes:buf});
     })
     return (
-        <div
+        <BaseNode
             className="node"
         >
             <div>Random Generator</div>
@@ -32,7 +33,7 @@ function RandomGenNode({ id, data }: NodeProps<Node<{ text: string }>>) {
                 updateNodeData(id ,{length:e.target.value});
             }}/> <button className="node-button" onClick={update}>↺</button> </div>
             <Handle id="bytes" type="source" position={Position.Bottom} />
-        </div>
+        </BaseNode>
     );
 }
 

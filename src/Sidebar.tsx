@@ -46,6 +46,9 @@ export default () => {
                 <div className="dndnode" onDragStart={(event) => onDragStart(event, 'split')} draggable>
                     Split Node
                 </div>
+                <div className="dndnode" onDragStart={(event) => onDragStart(event, 'salt')} draggable>
+                    Salting Node
+                </div>
             </div>
         </aside>
     );

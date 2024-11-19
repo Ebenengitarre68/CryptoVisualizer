@@ -25,7 +25,7 @@ function SaltingNode({ id }: NodeProps) {
     }, [textNode]);
 
     return (
-        <BaseNode className="node">
+        <BaseNode className="node tooltip ">
 
             <Handle
                 className="lable"
@@ -34,7 +34,12 @@ function SaltingNode({ id }: NodeProps) {
                 position={Position.Top}
                 isConnectable={connections.length === 0}
             />
-
+            <span className="tooltiptext">
+                Top: Msg In<br/>
+                Left: Salt In<br/>
+                Right: Salt Out<br/>
+                Bottom: Salted Msg<br/>
+            </span>
             <Handle
                 className="lable"
                 type="target"
@@ -43,7 +48,7 @@ function SaltingNode({ id }: NodeProps) {
                 isConnectable={connections.length === 0}
             />
             <div>Salting</div>
-            <Handle id='completeSalt' type="source" position={Position.Right} />
+            <Handle id='completeSalt' type="source" position={Position.Right}/>
             <Handle id='bytes' type="source" position={Position.Bottom}/>
         </BaseNode>
     );

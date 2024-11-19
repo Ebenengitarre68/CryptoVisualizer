@@ -15,13 +15,11 @@ export default () => {
                 the red bordered are output and the black are calculation
             </div>
             <hr/>
-            <div style={
-                {
+            <div style={{
                     overflow: 'scroll',
                     display: "grid",
                     gridTemplateColumns: "1fr 1fr",
-                    gridGap: "10px",
-            }}>
+                    gridGap: "10px",}}>
                 <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'text')} draggable>
                     Text input Node
                 </div>

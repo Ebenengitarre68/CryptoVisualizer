@@ -44,9 +44,10 @@ function XorNode({ id }: NodeProps) {
 
     return (
         <BaseNode
-            className="node"
+            className="node tooltip"
             style={{fontSize: 25, padding: 4}}
         >
+            <span className="tooltiptextsmall">XOR</span>
             <Handle
                 type="target"
                 position={Position.Top}

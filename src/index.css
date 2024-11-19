@@ -6,6 +6,7 @@
   --secondaryColor: #cdcdcd;
   --primaryDark: #4c4c4c;
   --secondaryDark: #636363;
+  --thirdDark:#b5b5b5;
   font-family: Inter, system-ui, Avenir, Helvetica, Arial, sans-serif;
   line-height: 1.5;
   font-weight: 400;
@@ -147,6 +148,19 @@ select.nav-button{
   border-top-right-radius: 5px;
 }
 
+.select{
+  background-color: var(--secondaryColor);
+  color: black;
+  margin: 3px;
+  border-radius: 5px;
+  padding: 2px;
+}
+
+
+.dark .select{
+  background-color: var(--thirdDark);
+  color: white;
+}
 .nav-button:hover {
   background-color: var(--primaryColor);
   color: black;
@@ -202,7 +216,7 @@ input {
 }
 
 .dark .node-button:hover {
-  background-color: #b5b5b5;
+  background-color: var(--thirdDark);
 }
 
 

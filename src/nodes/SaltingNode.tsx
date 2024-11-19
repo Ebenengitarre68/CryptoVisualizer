@@ -47,7 +47,15 @@ function SaltingNode({ id }: NodeProps) {
                 position={Position.Left}
                 isConnectable={connections.length === 0}
             />
-            <div>Salting</div>
+            <div>Salting to
+                <select className="select">
+                    <option>128</option>
+                    <option>256</option>
+                    <option>512</option>
+                </select>
+                bits
+            </div>
+
             <Handle id='completeSalt' type="source" position={Position.Right}/>
             <Handle id='bytes' type="source" position={Position.Bottom}/>
         </BaseNode>

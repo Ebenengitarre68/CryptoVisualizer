@@ -1,5 +1,4 @@
-import React, { memo, useEffect } from 'react';
-import { LabeledHandle } from "@/components/labeled-handle";
+import React, {ChangeEventHandler, memo, useEffect} from 'react';
 import {
     Position,
     Handle,
@@ -9,30 +8,54 @@ import {
     type NodeProps,
 } from '@xyflow/react';
 
-import {isTextNode, type MyNode} from './utils';
 import {BaseNode} from "@/components/base-node.tsx";
+import {MyNode} from "@/nodes/utils.ts";
 
-function SaltingNode({ id }: NodeProps) {
+function SaltingNode({ id, data }: NodeProps) {
     const { updateNodeData } = useReactFlow();
-    const connections = useHandleConnections({
-        type: 'target',
-    });
-    const nodesData:Pick<MyNode, "id" | "type" | "data"> | null = useNodesData<MyNode>(connections[0]?.source);
-    const textNode = isTextNode(nodesData) ? nodesData : null;
+    const connectionsIn = useHandleConnections({
+        type: 'target', id:'in'
+    })
+    const connectionsSalt = useHandleConnections({
+        type: 'target',id:'salt'
+    })
+
+    const inData = useNodesData<MyNode>(
+        connectionsIn.map((connection) => connection.source),
+    )
+    const saltData = useNodesData(
+        connectionsSalt.map((connection) => connection.source),
+    )
 
     useEffect(() => {
+        if(connectionsSalt.length == 1 && connectionsIn.length == 1) {
+            const saltNode = connectionsSalt[0];
+            const salt = [...saltData[0].data[saltNode.sourceHandle]];
+            const inputNode = connectionsIn[0]
+            const input = [...inData[0].data[inputNode.sourceHandle]];
+            const size: number = data["size"] / 8;
+            const saltOut: number[] = [];
+            while (input.length < size) {
+                input.push(salt);
+                saltOut.push(salt);
+            }
+            updateNodeData(id, {bytes: input});
+            updateNodeData(id, {completeSalt: saltOut});
+        }
+    }, [inData, saltData, data["size"]]);
 
-    }, [textNode]);
+    const onChange: ChangeEventHandler<HTMLSelectElement> =(evt) => {
+        updateNodeData(id, {size : evt.target.value})
+    };
 
     return (
         <BaseNode className="node tooltip ">
 
             <Handle
-                className="lable"
                 type="target"
                 id='in'
                 position={Position.Top}
-                isConnectable={connections.length === 0}
+                isConnectable={connectionsIn.length === 0}
             />
             <span className="tooltiptext">
                 Top: Msg In<br/>
@@ -41,17 +64,16 @@ function SaltingNode({ id }: NodeProps) {
                 Bottom: Salted Msg<br/>
             </span>
             <Handle
-                className="lable"
                 type="target"
                 id='salt'
                 position={Position.Left}
-                isConnectable={connections.length === 0}
+                isConnectable={connectionsSalt.length === 0}
             />
             <div>Salting to
-                <select className="select">
-                    <option>128</option>
-                    <option>256</option>
-                    <option>512</option>
+                <select className="select" onChange={onChange}>
+                    <option value={128}>128</option>
+                    <option value={256}>256</option>
+                    <option value={512}>512</option>
                 </select>
                 bits
             </div>

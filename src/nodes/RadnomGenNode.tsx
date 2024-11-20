@@ -10,8 +10,6 @@ import {BaseNode} from "@/components/base-node.tsx";
 
 function RandomGenNode({ id, data }: NodeProps<Node<{ text: string }>>) {
     const { updateNodeData } = useReactFlow();
-    useEffect(() => {
-    }, []);
     const update = useCallback(()=>{
         if(data.length !== null){
             var buf = new Uint8Array(data.length)

@@ -228,7 +228,7 @@ const CustomNodeFlow = () => {
               <div className="nav-div">
                 <button className="nav-button left-nav-button" onClick={onEmptyNew}>Empty</button>
                 <button className="nav-button" onClick={onSave}>Download</button>
-                <select className="nav-button" onChange={onChange} data-testid="colormode-select">
+                <select className="nav-button" onChange={onChange}>
                   <option value="system">System</option>
                   <option value="dark">Dark</option>
                   <option value="light">Light</option>

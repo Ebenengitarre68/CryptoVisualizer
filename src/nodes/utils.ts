@@ -1,4 +1,5 @@
 import { type Node } from '@xyflow/react';
+import SaltingNode from "@/nodes/SaltingNode.tsx";
 
 
 
@@ -10,8 +11,9 @@ export type XorNode = Node<{}, "xor">;
 export type BinaryToText = Node<{}, "b2text">;
 export type SplitNode = Node<{outputs: number}, "split">;
 export type RandomGenNode = Node<{}, "random">;
+export type SaltingNode = Node<{}, "salt">;
 
-export type MyNode = TextNode | MonitoringNode | TextToBinaryNode | XorNode | CommentNode | BinaryToText | SplitNode | RandomGenNode;
+export type MyNode = TextNode | MonitoringNode | TextToBinaryNode | XorNode | CommentNode | BinaryToText | SplitNode | RandomGenNode | SaltingNode;
 
 export function isTextNode(
     node: any,

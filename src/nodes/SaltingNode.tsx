@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, memo, useEffect} from 'react';
+import {ChangeEventHandler, memo, useEffect} from 'react';
 import {
     Position,
     Handle,
@@ -32,13 +32,19 @@ function SaltingNode({ id, data }: NodeProps) {
             const saltNode = connectionsSalt[0];
             const salt = [...saltData[0].data[saltNode.sourceHandle]];
             const inputNode = connectionsIn[0]
-            const input = [...inData[0].data[inputNode.sourceHandle]];
-            const size: number = data["size"] / 8;
-            const saltOut: number[] = [];
+            let input = [...inData[0].data[inputNode.sourceHandle]];
+            const size: number = data["size"] ==  undefined ? 16 : data["size"] / 8;
+            let saltOut: number[] = [];
             while (input.length < size) {
-                input.push(salt);
-                saltOut.push(salt);
+                input = input.concat(salt);
+                saltOut = saltOut.concat(salt);
             }
+            if ( input.length > size){
+                let i:number = input.length - size;
+                saltOut.splice(saltOut.length - i, i);
+                input.splice(input.length - i, i);
+            }
+
             updateNodeData(id, {bytes: input});
             updateNodeData(id, {completeSalt: saltOut});
         }

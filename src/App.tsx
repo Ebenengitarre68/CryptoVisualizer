@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, useCallback, useRef, useState} from 'react';
+import {ChangeEventHandler, useCallback, useRef, useState} from 'react';
 import {
   ReactFlow,
   ReactFlowProvider,
@@ -27,9 +27,8 @@ import {DnDProvider, useDnD} from "./DnDContext.tsx";
 import Sidebar from "./Sidebar.tsx";
 import DisplayEdge from "./edges/DisplayEdge.tsx";
 import ContextMenu from "./edges/ContextMenu.tsx";
-import {Simulate} from "react-dom/test-utils";
-import select = Simulate.select;
 import RandomGenNode from "./nodes/RadnomGenNode.tsx";
+import DeSaltingNode from "@/nodes/DeSaltingNode.tsx";
 
 const nodeTypes = {
   text: TextNode,
@@ -40,7 +39,8 @@ const nodeTypes = {
   b2text: BinaryToText,
   split: SplitNode,
   random: RandomGenNode,
-  salt: SaltingNode
+  salt: SaltingNode,
+  desalt: DeSaltingNode
 };
 
 const edgeTypes = {

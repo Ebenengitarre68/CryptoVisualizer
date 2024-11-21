@@ -16,10 +16,11 @@ export default () => {
             </div>
             <hr/>
             <div style={{
-                    overflow: 'scroll',
-                    display: "grid",
-                    gridTemplateColumns: "1fr 1fr",
-                    gridGap: "10px",}}>
+                overflow: 'scroll',
+                display: "grid",
+                gridTemplateColumns: "1fr 1fr",
+                gridGap: "10px",
+            }}>
                 <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'text')} draggable>
                     Text input Node
                 </div>
@@ -46,6 +47,9 @@ export default () => {
                 </div>
                 <div className="dndnode" onDragStart={(event) => onDragStart(event, 'salt')} draggable>
                     Salting Node
+                </div>
+                <div className="dndnode" onDragStart={(event) => onDragStart(event, 'desalt')} draggable>
+                    De-Salting Node
                 </div>
             </div>
         </aside>

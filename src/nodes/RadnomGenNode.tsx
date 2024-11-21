@@ -17,15 +17,17 @@ function RandomGenNode({ id, data }: NodeProps<Node<{ text: string }>>) {
             var buf = new Uint8Array(1);
         }
         crypto.getRandomValues(buf);
-        updateNodeData(id, {bytes:buf});
+        let out = [... buf]
+        updateNodeData(id, {bytes:out});
     })
+
     return (
         <BaseNode
             className="node"
         >
             <div>Random Generator</div>
             <div style={{ marginTop: 5 }}>
-                {data.bytes?.toString()}
+                {data.bytes?.map( x => x.toString(16).toUpperCase() ).toString()}
             </div>
             <div>Length: <input type="number" min="1" style={{width:50}} onChange={e => {
                 updateNodeData(id ,{length:e.target.value});

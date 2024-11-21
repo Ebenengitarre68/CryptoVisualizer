@@ -24,7 +24,10 @@ function MonitoringNode() {
             <Handle type="target" position={Position.Top} />
             <div>
                 Incoming texts:{' '}
-                {nodesData.map(({ data }:Pick<MyNode,any>, i) => <div key={i}>{ data[connections.at(i).sourceHandle]?.toString()}</div>) ||
+                {nodesData.map(({ data }:Pick<MyNode,any>, i) =>
+                        <div key={i}>{ Array.isArray( data[connections.at(i).sourceHandle] ) ?
+                            data[connections.at(i).sourceHandle].map(x => typeof x == "number"? x.toString(16).toUpperCase() : x ).toString()
+                            : data[connections.at(i).sourceHandle]?.toString()}</div>) ||
                     'none'}
             </div>
         </BaseNode>

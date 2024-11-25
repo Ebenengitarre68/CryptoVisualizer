@@ -2,8 +2,8 @@
 @tailwind components;
 @tailwind utilities;
 :root {
-  --primaryColor: #f1f1f1;
-  --secondaryColor: #cdcdcd;
+  --primaryColor: #d1d1d1;
+  --secondaryColor: #c3c3c3;
   --primaryDark: #4c4c4c;
   --secondaryDark: #636363;
   --thirdDark:#b5b5b5;
@@ -36,23 +36,30 @@ body {
   height: 100%;
 }
 
-.dndflow aside {
-  border-right: 1px solid #eee;
+.aside {
+  border-radius: 16px;
   padding: 15px 10px;
+  max-width: 200px;
   font-size: 15px;
   background: var(--primaryColor);
 }
 
-.dndflow aside .description {
+.dark  .aside {
+  color: white;
+  background: var(--secondaryDark);
+}
+
+.aside .description {
   border-radius: 10px;
   background-color: var(--secondaryColor);
   margin-bottom: 10px;
-  color: #222;
   padding: 10px;
 }
-
-.dndflow .dndnode {
-  background-color: white;
+.dark .aside .description{
+  background-color: var(--primaryDark);
+}
+.dndnode {
+  background-color: var(--secondaryColor);
   height: auto;
   padding: 4px;
   border: 2px solid #000000;
@@ -63,6 +70,10 @@ body {
   justify-content: center;
   align-items: center;
   cursor: grab;
+}
+
+.dark .dndnode{
+  background-color: var(--primaryDark);
 }
 
 .dndflow .dndnode.input {
@@ -87,9 +98,8 @@ body {
     flex-direction: row;
   }
 
-  .dndflow aside {
-    width: 20%;
-    max-width: 500px;
+  .dndflow .aside {
+    max-width: 300px;
   }
 }
 
@@ -116,13 +126,23 @@ body {
   text-align: center;
   border-radius: 10px;
   width: 100%;
+  background: var(--primaryColor);
+}
+
+.dark .context-menu button{
+  background: var(--primaryDark);
+  color: white;
 }
 
 .context-menu button:hover {
-  background: rgb(255, 255, 255);
+  background: var(--secondary);
   border: solid 1px black;
 }
+.dark .context-menu button:hover {
+  background: var(--secondaryDark);
+  border: solid 1px white;
 
+}
 .nav-div{
   background-color: var(--secondaryColor);
   padding: 8px;
@@ -132,8 +152,15 @@ body {
 .nav-button {
   color: black;
   font-size: 20px;
-  background-color: var(--secondaryColor);
+  background-color: var(--secondary);
   padding: 2px 4px;
+}
+.dark .nav-div{
+  background-color: var(--primaryDark);
+}
+.dark .nav-button{
+  background-color: var(--primaryDark);
+  color: white;
 }
 .left-nav-button{
   border-bottom-left-radius: 5px;
@@ -165,11 +192,15 @@ select.nav-button{
   background-color: var(--primaryColor);
   color: black;
 }
+.dark .nav-button:hover{
+  background-color: var(--secondaryDark);
+  color: white;
+}
 
 .nav-button .dropbutton {
   border: none;
   outline: none;
-  color: white;
+  color: var(--secondaryColor);
   padding: 14px 16px;
   background-color: inherit;
   font-family: inherit;
@@ -194,9 +225,16 @@ select.nav-button{
 }
 
 input {
-  background-color: white;
+  background-color: var(--secondaryColor);
 }
-
+input::-webkit-outer-spin-button,
+input::-webkit-inner-spin-button {
+  -webkit-appearance: none;
+  margin: 0;
+}
+input[type=number] {
+  -moz-appearance: textfield;
+}
 .dark input {
   background-color: var(--secondaryDark);
 }

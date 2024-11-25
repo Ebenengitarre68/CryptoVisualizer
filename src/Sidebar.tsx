@@ -10,11 +10,11 @@ export default () => {
     };
 
     return (
-        <aside>
-            <div className="description">You can drag these nodes to the pane on the left. The blues bordered are input,
+            <div className="aside">
+                <div className="description">You can drag these nodes to the pane on the left. The blues bordered are input,
                 the red bordered are output and the black are calculation
             </div>
-            <hr/>
+
             <div style={{
                 overflow: 'scroll',
                 display: "grid",
@@ -52,6 +52,6 @@ export default () => {
                     De-Salting Node
                 </div>
             </div>
-        </aside>
+            </div>
     );
 };

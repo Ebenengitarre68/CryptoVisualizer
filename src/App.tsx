@@ -200,7 +200,7 @@ const CustomNodeFlow = () => {
   };
 
   return (
-      <div className="dndflow" onClick={onPaneClick}>
+      <div className='dndflow' onClick={onPaneClick}>
         <div className="reactflow-wrapper"  ref={reactFlowWrapper}>
 
           <ReactFlow
@@ -224,7 +224,7 @@ const CustomNodeFlow = () => {
             <Controls/>
             <Background/>
             {menu && <ContextMenu {...menu}/>}
-            <Panel>
+            <Panel position= "top-left">
               <div className="nav-div">
                 <button className="nav-button left-nav-button" onClick={onEmptyNew}>Empty</button>
                 <button className="nav-button" onClick={onSave}>Download</button>
@@ -241,11 +241,15 @@ const CustomNodeFlow = () => {
 
               </div>
             </Panel>
+            <Panel  position="top-right">
+              <Sidebar/>
+            </Panel>
+
           </ReactFlow>
 
 
         </div>
-        <Sidebar/>
+
       </div>
   );
 };

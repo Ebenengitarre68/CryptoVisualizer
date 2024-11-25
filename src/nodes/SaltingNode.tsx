@@ -9,7 +9,6 @@ import {
 } from '@xyflow/react';
 
 import {BaseNode} from "@/components/base-node.tsx";
-import {MyNode} from "@/nodes/utils.ts";
 
 function SaltingNode({ id, data }: NodeProps) {
     const { updateNodeData } = useReactFlow();
@@ -20,7 +19,7 @@ function SaltingNode({ id, data }: NodeProps) {
         type: 'target',id:'salt'
     })
 
-    const inData = useNodesData<MyNode>(
+    const inData = useNodesData(
         connectionsIn.map((connection) => connection.source),
     )
     const saltData = useNodesData(

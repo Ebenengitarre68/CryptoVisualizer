@@ -417,6 +417,34 @@ input {
 }
 
 
+/* The container <div> - needed to position the dropdown content */
+.download-dropdown {
+  position: relative;
+  display: inline-block;
+}
+
+/* Dropdown Content (Hidden by Default) */
+.download-dropdown-content {
+  display: none;
+  position:absolute;
+  padding: 5px;
+}
+.nav-button .drop {
+  border-radius: 5px;
+  display: flex ;
+  text-align: center;
+}
+
+/* Links inside the dropdown */
+.download-dropdown-content button {
+}
+
+/* Show the dropdown menu on hover */
+.download-dropdown:hover .download-dropdown-content {display: block;}
+
+
+
+
 
 @layer base {
   * {

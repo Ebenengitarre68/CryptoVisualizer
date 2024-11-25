@@ -8,9 +8,9 @@ import {
   useEdgesState,
   Background,
   type Edge,
-  type OnConnect, MiniMap, useReactFlow, Panel, ColorMode,
+  type OnConnect, MiniMap, useReactFlow, Panel, ColorMode, getViewportForBounds, getNodesBounds,
 } from '@xyflow/react';
-
+import { toPng } from 'html-to-image';
 import '@xyflow/react/dist/style.css';
 
 import TextNode from './nodes/TextNode';
@@ -78,6 +78,13 @@ const initEdges: Edge[] = [
     target: 'r1',
   },
 ];
+function downloadImage(dataUrl) {
+  const a = document.createElement('a');
+
+  a.setAttribute('download', 'reactflow.png');
+  a.setAttribute('href', dataUrl);
+  a.click();
+}
 
 let id = initNodes.length;
 const getId = () => `node_${id++}`;
@@ -93,6 +100,7 @@ const CustomNodeFlow = () => {
   const [rfInstance, setRfInstance] = useState(null);
   const ref = useRef(null);
   const { setViewport } = useReactFlow();
+  const {getNodes} = useReactFlow()
 
 
   const onConnect: OnConnect = useCallback(
@@ -199,6 +207,33 @@ const CustomNodeFlow = () => {
     setColorMode(evt.target.value as ColorMode);
   };
 
+  const onToPng = () => {
+    // we calculate a transform for the nodes so that all nodes are visible
+    // we then overwrite the transform of the `.react-flow__viewport` element
+    // with the style option of the html-to-image library
+    const nodesBounds = getNodesBounds(getNodes());
+    const imageWidth = 1920;
+    const imageHeight = 1080;
+    const viewport = getViewportForBounds(
+        nodesBounds,
+        imageWidth,
+        imageHeight,
+        0.5,
+        2,
+    );
+
+    toPng(document.querySelector('.react-flow__viewport'), {
+      width: imageWidth,
+      height: imageHeight,
+      style: {
+        width: imageWidth,
+        height: imageHeight,
+        transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
+      },
+    }).then(downloadImage);
+  };
+
+
   return (
       <div className='dndflow' onClick={onPaneClick}>
         <div className="reactflow-wrapper"  ref={reactFlowWrapper}>
@@ -227,7 +262,14 @@ const CustomNodeFlow = () => {
             <Panel position= "top-left">
               <div className="nav-div">
                 <button className="nav-button left-nav-button" onClick={onEmptyNew}>Empty</button>
-                <button className="nav-button" onClick={onSave}>Download</button>
+                <div className="download-dropdown nav-button">
+                  <button className="download-drop-button">Download</button>
+                  <div className="download-dropdown-content nav-div" >
+                    <div className="nav-button drop" ><button onClick={onSave}>JSON</button></div>
+                    <div className="nav-button drop"><button onClick={onToPng}>PNG</button></div>
+                    <div className="nav-button drop"><button>SVG</button></div>
+                  </div>
+                </div>
                 <select className="nav-button" onChange={onChange}>
                   <option value="system">System</option>
                   <option value="dark">Dark</option>

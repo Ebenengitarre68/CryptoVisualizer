@@ -10,7 +10,7 @@ import {
   type Edge,
   type OnConnect, MiniMap, useReactFlow, Panel, ColorMode, getViewportForBounds, getNodesBounds,
 } from '@xyflow/react';
-import { toPng } from 'html-to-image';
+import {toPng, toSvg} from 'html-to-image';
 import '@xyflow/react/dist/style.css';
 
 import TextNode from './nodes/TextNode';
@@ -81,7 +81,14 @@ const initEdges: Edge[] = [
 function downloadImage(dataUrl) {
   const a = document.createElement('a');
 
-  a.setAttribute('download', 'reactflow.png');
+  a.setAttribute('download', 'algorythm.png');
+  a.setAttribute('href', dataUrl);
+  a.click();
+}
+function downloadSVG(dataUrl) {
+  const a = document.createElement('a');
+
+  a.setAttribute('download', 'algorythm.svg');
   a.setAttribute('href', dataUrl);
   a.click();
 }
@@ -233,6 +240,32 @@ const CustomNodeFlow = () => {
     }).then(downloadImage);
   };
 
+  const onToSvg = () => {
+    // we calculate a transform for the nodes so that all nodes are visible
+    // we then overwrite the transform of the `.react-flow__viewport` element
+    // with the style option of the html-to-image library
+    const nodesBounds = getNodesBounds(getNodes());
+    const imageWidth = 1920;
+    const imageHeight = 1080;
+    const viewport = getViewportForBounds(
+        nodesBounds,
+        imageWidth,
+        imageHeight,
+        0.5,
+        2,
+    );
+
+    toSvg(document.querySelector('.react-flow__viewport'), {
+      width: imageWidth,
+      height: imageHeight,
+      style: {
+        width: imageWidth,
+        height: imageHeight,
+        transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
+      },
+    }).then(downloadSVG);
+  };
+
 
   return (
       <div className='dndflow' onClick={onPaneClick}>
@@ -267,7 +300,7 @@ const CustomNodeFlow = () => {
                   <div className="download-dropdown-content nav-div" >
                     <div className="nav-button drop" ><button onClick={onSave}>JSON</button></div>
                     <div className="nav-button drop"><button onClick={onToPng}>PNG</button></div>
-                    <div className="nav-button drop"><button>SVG</button></div>
+                    <div className="nav-button drop"><button onClick={onToSvg}>SVG</button></div>
                   </div>
                 </div>
                 <select className="nav-button" onChange={onChange}>

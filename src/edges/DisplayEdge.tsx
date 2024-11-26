@@ -46,7 +46,8 @@ export default function DisplayEdge({
                     }}
                     className="edgelabel"
                 >
-                    {useNodesData(source).data[sourceHandleId].map(x => typeof x == "number" ? x.toString(16).toUpperCase() : x).toString()}
+                    { typeof  useNodesData(source).data[sourceHandleId] == "string" ? useNodesData(source).data[sourceHandleId] :
+                        useNodesData(source).data[sourceHandleId].map(x => typeof x == "number" ? x.toString(16).toUpperCase() : x).toString()}
                 </div>
             </EdgeLabelRenderer>
         </>

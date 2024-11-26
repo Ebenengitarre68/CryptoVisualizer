@@ -39,7 +39,7 @@ body {
 .aside {
   border-radius: 16px;
   padding: 15px 10px;
-  max-width: 200px;
+  max-width: 175px;
   font-size: 15px;
   background: var(--primaryColor);
 }

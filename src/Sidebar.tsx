@@ -10,17 +10,18 @@ export default () => {
     };
 
     return (
-            <div className="aside">
-                <div className="description">You can drag these nodes to the pane on the left. The blues bordered are input,
-                the red bordered are output and the black are calculation
-            </div>
+            <div className="aside" >
+                <div className="description">
+                    You can drag these nodes to the pane on the left. The blues are input,
+                    the red are output and the black are calculation.
+                </div>
 
             <div style={{
-                overflow: 'scroll',
+                overflow: 'auto',
                 display: "grid",
-                gridTemplateColumns: "1fr 1fr",
-                gridGap: "10px",
-            }}>
+                alignItems: "center",
+                maxHeight: "400px",
+               }}>
                 <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'text')} draggable>
                     Text input Node
                 </div>
@@ -52,6 +53,7 @@ export default () => {
                     De-Salting Node
                 </div>
             </div>
+
             </div>
     );
 };

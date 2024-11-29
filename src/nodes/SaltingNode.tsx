@@ -79,6 +79,9 @@ function SaltingNode({ id, data }: NodeProps) {
                     <option value={128}>128</option>
                     <option value={256}>256</option>
                     <option value={512}>512</option>
+                    <option value={1024}>1024</option>
+                    <option value={2048}>2048</option>
+                    <option value={1088}>1088</option>
                 </select>
                 bits
             </div>

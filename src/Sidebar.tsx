@@ -21,6 +21,9 @@ export default () => {
                 display: "grid",
                 alignItems: "center",
                 maxHeight: "400px",
+                borderRadius: "1px",
+                marginRight: "5px",
+                marginLeft: "5px",
                }}>
                 <div className="dndnode input" onDragStart={(event) => onDragStart(event, 'text')} draggable>
                     Text input Node

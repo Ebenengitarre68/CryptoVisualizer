@@ -12,8 +12,8 @@ export type SplitNode = Node<{outputs: number}, "split">;
 export type RandomGenNode = Node<{}, "random">;
 export type DeSaltingNode = Node<{}, "desalt">
 export type SaltingNode = Node<{}, "salt">;
-
-export type MyNode = TextNode | MonitoringNode | TextToBinaryNode | XorNode | CommentNode | BinaryToText | SplitNode | RandomGenNode | SaltingNode | DeSaltingNode ;
+export type SubBytes = Node<{}, "subBytes">;
+export type MyNode = SubBytes |  TextNode | MonitoringNode | TextToBinaryNode | XorNode | CommentNode | BinaryToText | SplitNode | RandomGenNode | SaltingNode | DeSaltingNode ;
 
 export function isTextNode(
     node: any,

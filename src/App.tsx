@@ -28,7 +28,8 @@ import Sidebar from "./Sidebar.tsx";
 import DisplayEdge from "./edges/DisplayEdge.tsx";
 import ContextMenu from "./edges/ContextMenu.tsx";
 import RandomGenNode from "./nodes/RadnomGenNode.tsx";
-import DeSaltingNode from "@/nodes/DeSaltingNode.tsx";
+import DeSaltingNode from "./nodes/DeSaltingNode.tsx";
+import SubBytes from "./nodes/SubBytes.tsx";
 
 const nodeTypes = {
   text: TextNode,
@@ -40,7 +41,8 @@ const nodeTypes = {
   split: SplitNode,
   random: RandomGenNode,
   salt: SaltingNode,
-  desalt: DeSaltingNode
+  desalt: DeSaltingNode,
+  subBytes: SubBytes
 };
 
 const edgeTypes = {
@@ -296,7 +298,7 @@ const CustomNodeFlow = () => {
               <div className="nav-div">
                 <button className="nav-button left-nav-button" onClick={onEmptyNew}>Empty</button>
                 <div className="download-dropdown nav-button">
-                  <button className="download-drop-button">Download</button>
+                  <button className="download-drop-button" onClick={onSave}>Download</button>
                   <div className="download-dropdown-content nav-div" >
                     <div className="nav-button drop" ><button onClick={onSave}>JSON</button></div>
                     <div className="nav-button drop"><button onClick={onToPng}>PNG</button></div>

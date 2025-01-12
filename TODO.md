@@ -10,7 +10,7 @@
 
 ## Node Categories?
 
-## SubBytes Node
+## SubBytes Node Improvements / Cleaner
 
 ## ShiftRows Node
 
@@ -34,4 +34,7 @@
 * ...
 * Upload
 
+## BUGS
 
+* When dragged over the node select nodes will be spawned if let go 
+* Edge Labels are default color

@@ -1,3 +1,9 @@
+# Latex
+
+Entweder book oder report
+
+## Komascript (report klasser)
+
 # TODO
 
 # Algorithms to implement
@@ -35,6 +41,8 @@
 * Upload
 
 ## BUGS
+
+* Salting ist eigentlich padding
 
 * When dragged over the node select nodes will be spawned if let go 
 * Edge Labels are default color

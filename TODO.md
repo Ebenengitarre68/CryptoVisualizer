@@ -41,8 +41,6 @@ Entweder book oder report
 * Upload
 
 ## BUGS
-
-* Salting ist eigentlich padding
-
 * When dragged over the node select nodes will be spawned if let go 
 * Edge Labels are default color
+* Crash when connecting empty random node to fully connected padding node

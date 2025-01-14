@@ -49,14 +49,17 @@ export default () => {
                     <div className="dndnode" onDragStart={(event) => onDragStart(event, 'split')} draggable>
                         Split Node
                     </div>
-                    <div className="dndnode" onDragStart={(event) => onDragStart(event, 'salt')} draggable>
-                        Salting Node
+                    <div className="dndnode" onDragStart={(event) => onDragStart(event, 'pad')} draggable>
+                        Padding Node
                     </div>
-                    <div className="dndnode" onDragStart={(event) => onDragStart(event, 'desalt')} draggable>
-                        De-Salting Node
+                    <div className="dndnode" onDragStart={(event) => onDragStart(event, 'dePad')} draggable>
+                        De-Padding Node
                     </div>
                     <div className="dndnode" onDragStart={(event) => onDragStart(event, 'subBytes')} draggable>
                         Sub Bytes
+                    </div>
+                    <div className="dndnode" onDragStart={(event) => onDragStart(event, 'invSubBytes')} draggable>
+                        Inverse Sub Bytes
                     </div>
                 </div>
 

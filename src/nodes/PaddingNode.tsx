@@ -10,7 +10,7 @@ import {
 
 import {BaseNode} from "@/components/base-node.tsx";
 
-function SaltingNode({ id, data }: NodeProps) {
+function PaddingNode({ id, data }: NodeProps) {
     const { updateNodeData } = useReactFlow();
     const connectionsIn = useHandleConnections({
         type: 'target', id:'in'
@@ -92,4 +92,4 @@ function SaltingNode({ id, data }: NodeProps) {
     );
 }
 
-export default memo(SaltingNode);
+export default memo(PaddingNode);

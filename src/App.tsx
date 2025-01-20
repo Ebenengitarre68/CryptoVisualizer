@@ -21,15 +21,17 @@ import XorNode from "./nodes/XorNode.tsx";
 import CommentNode from './nodes/CommentNode.tsx';
 import BinaryToText from "./nodes/BinaryToText.tsx";
 import SplitNode from "./nodes/SplitNode.tsx";
-import SaltingNode from "./nodes/SaltingNode.tsx";
+import PaddingNode from "./nodes/PaddingNode.tsx";
 
 import {DnDProvider, useDnD} from "./DnDContext.tsx";
 import Sidebar from "./Sidebar.tsx";
 import DisplayEdge from "./edges/DisplayEdge.tsx";
 import ContextMenu from "./edges/ContextMenu.tsx";
 import RandomGenNode from "./nodes/RadnomGenNode.tsx";
-import DeSaltingNode from "./nodes/DeSaltingNode.tsx";
+import DePaddingNode from "./nodes/DePaddingNode.tsx";
 import SubBytes from "./nodes/SubBytes.tsx";
+import ShiftRows from "./nodes/ShiftRows.tsx";
+import InvShiftRows from "@/nodes/InvShiftRows.tsx";
 
 const nodeTypes = {
   text: TextNode,
@@ -40,9 +42,11 @@ const nodeTypes = {
   b2text: BinaryToText,
   split: SplitNode,
   random: RandomGenNode,
-  salt: SaltingNode,
-  desalt: DeSaltingNode,
-  subBytes: SubBytes
+  pad: PaddingNode,
+  depad: DePaddingNode,
+  subBytes: SubBytes,
+  shiftR: ShiftRows,
+  invShiftR: InvShiftRows
 };
 
 const edgeTypes = {

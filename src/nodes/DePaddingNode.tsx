@@ -11,7 +11,7 @@ import {
 import {BaseNode} from "@/components/base-node.tsx";
 import {MyNode} from "@/nodes/utils.ts";
 
-function DeSaltingNode({ id, data }: NodeProps) {
+function DePaddingNode({ id, data }: NodeProps) {
     const { updateNodeData } = useReactFlow();
     const connectionsIn = useHandleConnections({
         type: 'target', id:'in'
@@ -78,4 +78,4 @@ function DeSaltingNode({ id, data }: NodeProps) {
     );
 }
 
-export default memo(DeSaltingNode);
+export default memo(DePaddingNode);

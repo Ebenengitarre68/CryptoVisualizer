@@ -10,10 +10,12 @@ export type XorNode = Node<{}, "xor">;
 export type BinaryToText = Node<{}, "b2text">;
 export type SplitNode = Node<{outputs: number}, "split">;
 export type RandomGenNode = Node<{}, "random">;
-export type DeSaltingNode = Node<{}, "desalt">
-export type SaltingNode = Node<{}, "salt">;
+export type DePaddingNode = Node<{}, "depad">
+export type PaddingNode = Node<{}, "pad">;
 export type SubBytes = Node<{}, "subBytes">;
-export type MyNode = SubBytes |  TextNode | MonitoringNode | TextToBinaryNode | XorNode | CommentNode | BinaryToText | SplitNode | RandomGenNode | SaltingNode | DeSaltingNode ;
+export type ShiftRows = Node<{}, "shiftR">;
+export type InvShiftRows = Node<{}, "invShiftR">
+export type MyNode =  ShiftRows | SubBytes |  TextNode | MonitoringNode | TextToBinaryNode | XorNode | CommentNode | BinaryToText | SplitNode | RandomGenNode | PaddingNode | DePaddingNode ;
 
 export function isTextNode(
     node: any,

@@ -22,6 +22,8 @@ Entweder book oder report
 
 ## Config Node
 
+## Manipulation Node
+
 ## Join node n:1
 * n configurable
 
@@ -29,11 +31,6 @@ Entweder book oder report
 * configurable looping rounds and throughput
 
 ## Toolbar With list of choose able Graphs
-
-### Export
-+ Png / Jpg
-+ svg
-
 
 ### Choose-able Graphs
 

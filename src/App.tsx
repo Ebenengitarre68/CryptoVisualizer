@@ -49,9 +49,6 @@ const nodeTypes = {
   dePad: DePaddingNode,
   subBytes: SubBytes,
   invSubBytes: InvSubBytes,
-  pad: PaddingNode,
-  depad: DePaddingNode,
-  subBytes: SubBytes,
   shiftR: ShiftRows,
   invShiftR: InvShiftRows,
   colMajor: ColumnMajorOrder

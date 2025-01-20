@@ -41,7 +41,7 @@ function BinaryToText({ id }: NodeProps) {
                 position={Position.Top}
                 isConnectable={connections.length === 0}
             />
-            <div>binary to text</div>
+            <div>Binary to text</div>
             <Handle id="text" type="source" position={Position.Bottom} />
         </BaseNode>
     );

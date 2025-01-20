@@ -32,6 +32,7 @@ import DePaddingNode from "./nodes/DePaddingNode.tsx";
 import SubBytes from "./nodes/SubBytes.tsx";
 import ShiftRows from "./nodes/ShiftRows.tsx";
 import InvShiftRows from "@/nodes/InvShiftRows.tsx";
+import ColumnMajorOrder from "@/nodes/ColumnMajorOrder.tsx";
 
 const nodeTypes = {
   text: TextNode,
@@ -46,7 +47,8 @@ const nodeTypes = {
   depad: DePaddingNode,
   subBytes: SubBytes,
   shiftR: ShiftRows,
-  invShiftR: InvShiftRows
+  invShiftR: InvShiftRows,
+  colMajor: ColumnMajorOrder
 };
 
 const edgeTypes = {

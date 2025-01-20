@@ -11,7 +11,7 @@ import {
 import {type MyNode} from './utils';
 import {BaseNode} from "@/components/base-node.tsx";
 
-function ShiftRows({ id, data }: NodeProps) {
+function ColumnMajorOrder({ id, data }: NodeProps) {
 
     const { updateNodeData } = useReactFlow();
     const connections = useHandleConnections({
@@ -30,11 +30,11 @@ function ShiftRows({ id, data }: NodeProps) {
             if(data.length== 16){
                 switch (mode) {
                     case 0:
-                        out = [ data[0], data[1], data[2], data[3],
-                                data[5], data[6], data[7], data[4],
-                                data[10], data[11], data[8], data[9],
-                                data[15], data[12], data[13], data[14]
-                            ];
+                        out = [ data[0], data[4], data[8], data[12],
+                                data[1], data[5], data[9], data[13],
+                                data[2], data[6], data[10],data[14],
+                                data[3], data[7], data[11],data[15],
+                        ]
                         break;
                     default:
                 }
@@ -57,10 +57,10 @@ function ShiftRows({ id, data }: NodeProps) {
                 position={Position.Top}
                 isConnectable={connections.length === 0}
             />
-            <div style={{ display:"flex", justifyContent:"center"}}>Shift Rows</div>
+            <div style={{ display:"flex", justifyContent:"center"}}>Column major order</div>
             <div>
                 <select className="select" onChange={onChange}>
-                    <option value={0}>AES</option>
+                    <option value={0}>4x4</option>
                 </select>
             </div>
             <Handle id="bytes" type="source" position={Position.Bottom}/>
@@ -68,4 +68,4 @@ function ShiftRows({ id, data }: NodeProps) {
     );
 }
 
-export default memo(ShiftRows);
+export default memo(ColumnMajorOrder);

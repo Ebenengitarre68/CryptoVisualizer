@@ -57,7 +57,7 @@ function InvShiftRows({ id, data }: NodeProps) {
                 position={Position.Top}
                 isConnectable={connections.length === 0}
             />
-            <div style={{fontSize: 20, display:"flex", justifyContent:"center"}}>Shift Rows⁻¹</div>
+            <div style={{display:"flex", justifyContent:"center"}}>Shift Rows⁻¹</div>
             <div>
                 <select className="select" onChange={onChange}>
                     <option value={0}>AES</option>

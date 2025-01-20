@@ -103,14 +103,12 @@ body {
   }
 }
 
-.edgelabel {
+.edge-label {
   width: fit-content;
   height: fit-content;
-  padding: 5px;
-  background: #eee;
-  border: 1px solid #fff;
+  padding: 7px;
+  background-color: var(--primaryColor);
   border-radius: 10px;
-  font-size: 12px;
   line-height: 1;
 }
 
@@ -265,7 +263,7 @@ input {
   border-radius: 10px;
 }
 .dark .node {
- background-color: var(--primaryDark);
+  background-color: var(--primaryDark);
   padding: 10px;
   font-size: 12px;
   border-radius: 10px;
@@ -444,7 +442,10 @@ input {
 .download-dropdown:hover .download-dropdown-content {display: block;}
 
 
-
+.dark .edge-label {
+  color: white;
+  background-color: var(--primaryDark);
+}
 
 
 @layer base {

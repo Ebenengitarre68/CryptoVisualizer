@@ -39,12 +39,12 @@ export default function DisplayEdge({
                     style={{
                         position: 'absolute',
                         transform: `translate(-50%, -50%) translate(${labelX}px,${labelY}px)`,
-                        fontSize: 12,
+                        fontSize: 10,
                         // everything inside EdgeLabelRenderer has no pointer events by default
                         // if you have an interactive element, set pointer-events: all
                         pointerEvents: 'all',
                     }}
-                    className="edgelabel"
+                    className="edge-label"
                 >
                     { typeof  useNodesData(source).data[sourceHandleId] == "string" ? useNodesData(source).data[sourceHandleId] :
                         useNodesData(source).data[sourceHandleId].map(x => typeof x == "number" ? x.toString(16).toUpperCase() : x).toString()}

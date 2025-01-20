@@ -18,9 +18,11 @@ Entweder book oder report
 
 ## SubBytes Node Improvements / Cleaner
 
-## ShiftRows Node
-
 ## MixColumns Node
+
+## Config Node
+
+## Manipulation Node
 
 ## Join node n:1
 * n configurable
@@ -30,17 +32,14 @@ Entweder book oder report
 
 ## Toolbar With list of choose able Graphs
 
-### Export
-+ Png / Jpg
-+ svg
-
-
 ### Choose-able Graphs
+
 * AES
 * ...
 * Upload
 
 ## BUGS
+
 * When dragged over the node select nodes will be spawned if let go 
 * Edge Labels are default color
 * Crash when connecting empty random node to fully connected padding node

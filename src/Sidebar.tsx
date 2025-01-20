@@ -61,6 +61,15 @@ export default () => {
                     <div className="dndnode" onDragStart={(event) => onDragStart(event, 'invSubBytes')} draggable>
                         Inverse Sub Bytes
                     </div>
+                    <div className="dndnode" onDragStart={(event) => onDragStart(event, 'shiftR')} draggable>
+                        Shift Rows
+                    </div>
+                    <div className="dndnode" onDragStart={(event) => onDragStart(event, 'invShiftR')} draggable>
+                        Inverse Shift Rows
+                    </div>
+                    <div className="dndnode" onDragStart={(event) => onDragStart(event, 'colMajor')} draggable>
+                        Column Major Order
+                    </div>
                 </div>
 
             </div>

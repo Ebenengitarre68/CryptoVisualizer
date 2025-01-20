@@ -14,7 +14,10 @@ export type DePaddingNode = Node<{}, "dePad">
 export type PaddingNode = Node<{}, "pad">;
 export type SubBytes = Node<{}, "subBytes">;
 export type InvSubBytes = Node<{}, "invSubBytes">;
-export type MyNode = SubBytes |  TextNode | MonitoringNode | TextToBinaryNode | XorNode | CommentNode | BinaryToText | SplitNode | RandomGenNode | PaddingNode | DePaddingNode | InvSubBytes ;
+export type ShiftRows = Node<{}, "shiftR">;
+export type InvShiftRows = Node<{}, "invShiftR">
+export type ColumnMajorOrder = Node<{},"colMajor">
+export type MyNode =  InvShiftRows| ShiftRows | SubBytes |  TextNode | MonitoringNode | TextToBinaryNode | XorNode | CommentNode | BinaryToText | SplitNode | RandomGenNode | PaddingNode | DePaddingNode ;
 
 export function isTextNode(
     node: any,

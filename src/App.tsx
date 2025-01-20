@@ -30,6 +30,9 @@ import ContextMenu from "./edges/ContextMenu.tsx";
 import RandomGenNode from "./nodes/RadnomGenNode.tsx";
 import DePaddingNode from "./nodes/DePaddingNode.tsx";
 import SubBytes from "./nodes/SubBytes.tsx";
+import ShiftRows from "./nodes/ShiftRows.tsx";
+import InvShiftRows from "@/nodes/InvShiftRows.tsx";
+import ColumnMajorOrder from "@/nodes/ColumnMajorOrder.tsx";
 import InvSubBytes from "./nodes/InverseSubBytes.tsx";
 
 
@@ -45,7 +48,13 @@ const nodeTypes = {
   pad: PaddingNode,
   dePad: DePaddingNode,
   subBytes: SubBytes,
-  invSubBytes: InvSubBytes
+  invSubBytes: InvSubBytes,
+  pad: PaddingNode,
+  depad: DePaddingNode,
+  subBytes: SubBytes,
+  shiftR: ShiftRows,
+  invShiftR: InvShiftRows,
+  colMajor: ColumnMajorOrder
 };
 
 const edgeTypes = {

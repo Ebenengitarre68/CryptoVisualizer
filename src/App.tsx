@@ -34,6 +34,7 @@ import ShiftRows from "./nodes/ShiftRows.tsx";
 import InvShiftRows from "@/nodes/InvShiftRows.tsx";
 import ColumnMajorOrder from "@/nodes/ColumnMajorOrder.tsx";
 import InvSubBytes from "./nodes/InverseSubBytes.tsx";
+import MixColumns from "@/nodes/MixColumns.tsx";
 
 
 const nodeTypes = {
@@ -51,7 +52,8 @@ const nodeTypes = {
   invSubBytes: InvSubBytes,
   shiftR: ShiftRows,
   invShiftR: InvShiftRows,
-  colMajor: ColumnMajorOrder
+  colMajor: ColumnMajorOrder,
+  mixColumns: MixColumns
 };
 
 const edgeTypes = {

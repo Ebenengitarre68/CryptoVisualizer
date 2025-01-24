@@ -11,7 +11,7 @@ import {
 import {type MyNode} from './utils';
 import {BaseNode} from "@/components/base-node.tsx";
 
-function ColumnMajorOrder({ id, data }: NodeProps) {
+function MixColumns({ id, data }: NodeProps) {
 
     const { updateNodeData } = useReactFlow();
     const connections = useHandleConnections({
@@ -26,15 +26,23 @@ function ColumnMajorOrder({ id, data }: NodeProps) {
         }
         if(nodesData !== null) {
             let data = nodesData.data[connections.at(0).sourceHandle];
-            let out = [];
-            if(data.length == 16){
+            let out = [...data];
+            if(data.length== 16){
                 switch (mode) {
                     case 0:
-                        out = [ data[0], data[4], data[8], data[12],
-                                data[1], data[5], data[9], data[13],
-                                data[2], data[6], data[10],data[14],
-                                data[3], data[7], data[11],data[15],
-                        ]
+                        //AES MIX COLUMNS
+                        for (let c:number = 0; c<4; c++) {
+                            let a = new Array(4);
+                            let b = new Array(4);
+                            for (let i:number = 0; i < 4; i++) {
+                                a[i] = out[i + c * 4];
+                                b[i] = out[i + c * 4] & 0x80 ? out[i + c * 4]<<1 ^ 0x011b : out[i + c * 4]<<1;
+                            }
+                            out[0 + c * 4] = b[0] ^ a[1] ^ b[1] ^ a[2] ^ a[3];
+                            out[1 + c * 4] = a[0] ^ b[1] ^ a[2] ^ b[2] ^ a[3];
+                            out[2 + c * 4] = a[0] ^ a[1] ^ b[2] ^ a[3] ^ b[3];
+                            out[3 + c * 4] = a[0] ^ b[0] ^ a[1] ^ a[2] ^ b[3];
+                        }
                         break;
                     default:
                 }
@@ -57,10 +65,10 @@ function ColumnMajorOrder({ id, data }: NodeProps) {
                 position={Position.Top}
                 isConnectable={connections.length === 0}
             />
-            <div style={{ display:"flex", justifyContent:"center"}}>Column major order</div>
+            <div style={{ display:"flex", justifyContent:"center"}}>Mix Columns</div>
             <div>
                 <select className="select" onChange={onChange}>
-                    <option value={0}>4x4</option>
+                    <option value={0}>AES</option>
                 </select>
             </div>
             <Handle id="bytes" type="source" position={Position.Bottom}/>
@@ -68,4 +76,4 @@ function ColumnMajorOrder({ id, data }: NodeProps) {
     );
 }
 
-export default memo(ColumnMajorOrder);
+export default memo(MixColumns);

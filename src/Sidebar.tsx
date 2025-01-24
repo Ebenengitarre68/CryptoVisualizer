@@ -70,6 +70,9 @@ export default () => {
                     <div className="dndnode" onDragStart={(event) => onDragStart(event, 'colMajor')} draggable>
                         Column Major Order
                     </div>
+                    <div className="dndnode" onDragStart={(event) => onDragStart(event, 'mixColumns')} draggable>
+                        Mix Columns
+                    </div>
                 </div>
 
             </div>

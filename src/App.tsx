@@ -35,6 +35,7 @@ import InvShiftRows from "@/nodes/InvShiftRows.tsx";
 import ColumnMajorOrder from "@/nodes/ColumnMajorOrder.tsx";
 import InvSubBytes from "./nodes/InverseSubBytes.tsx";
 import MixColumns from "@/nodes/MixColumns.tsx";
+import {useWindowHeight, useWindowSize, useWindowWidth} from "@react-hook/window-size";
 
 
 const nodeTypes = {
@@ -122,7 +123,7 @@ const CustomNodeFlow = () => {
   const { setViewport } = useReactFlow();
   const {getNodes} = useReactFlow()
 
-
+  const [ imageWidth, imageHeight] = useWindowSize()
   const onConnect: OnConnect = useCallback(
       (connection) => setEdges((eds) => addEdge(connection, eds)),
       [setEdges],
@@ -232,8 +233,10 @@ const CustomNodeFlow = () => {
     // we then overwrite the transform of the `.react-flow__viewport` element
     // with the style option of the html-to-image library
     const nodesBounds = getNodesBounds(getNodes());
-    const imageWidth = 1920;
-    const imageHeight = 1080;
+
+
+
+
     const viewport = getViewportForBounds(
         nodesBounds,
         imageWidth,
@@ -258,8 +261,6 @@ const CustomNodeFlow = () => {
     // we then overwrite the transform of the `.react-flow__viewport` element
     // with the style option of the html-to-image library
     const nodesBounds = getNodesBounds(getNodes());
-    const imageWidth = 1920;
-    const imageHeight = 1080;
     const viewport = getViewportForBounds(
         nodesBounds,
         imageWidth,
@@ -269,11 +270,7 @@ const CustomNodeFlow = () => {
     );
 
     toSvg(document.querySelector('.react-flow__viewport'), {
-      width: imageWidth,
-      height: imageHeight,
       style: {
-        width: imageWidth,
-        height: imageHeight,
         transform: `translate(${viewport.x}px, ${viewport.y}px) scale(${viewport.zoom})`,
       },
     }).then(downloadSVG);

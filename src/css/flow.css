@@ -30,6 +30,7 @@ body {
 }
 
 .dndflow {
+  margin-left: 64px;
   flex-direction: column;
   display: flex;
   flex-grow: 1;

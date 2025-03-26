@@ -1,5 +1,5 @@
 import React from 'react';
-import { useDnD } from './DnDContext';
+import { useDnD } from './DnDContext.tsx';
 
 export default () => {
     const [_, setType] = useDnD();

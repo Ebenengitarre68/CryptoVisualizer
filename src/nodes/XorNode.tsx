@@ -10,6 +10,8 @@ import {
 
 import {  type MyNode } from './utils';
 import {BaseNode} from "@/components/base-node.tsx";
+import {Link} from "react-router-dom";
+import XOR from "@/pages/Nodes/XOR.tsx";
 
 function XorNode({ id }: NodeProps) {
     const { updateNodeData } = useReactFlow();
@@ -47,7 +49,7 @@ function XorNode({ id }: NodeProps) {
             className="node tooltip"
             style={{fontSize: 25, padding: 4}}
         >
-            <span className="tooltiptextsmall">XOR</span>
+            <span className="tooltiptextsmall">XOR<Link target="_blank" to={"/xor"}>🛈</Link></span>
             <Handle
                 type="target"
                 position={Position.Top}

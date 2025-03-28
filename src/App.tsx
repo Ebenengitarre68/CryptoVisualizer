@@ -1,11 +1,12 @@
 import {HashRouter as Router,Routes,Route} from "react-router-dom";
-import Flow from "@/pages/Flow.tsx";
+import Flow from "@/pages/Sandbox.tsx";
 import Xor from "@/pages/Nodes/XOR.tsx";
 import Home from "@/pages/Home.tsx";
 import AES from "@/pages/Algorithms/AES.tsx"
 import Sidenav from "@/components/Sidenav.tsx";
 import "/src/css/general.css"
 import useLocalStorage from "use-local-storage";
+import SubBox from "@/pages/Nodes/SubBox.tsx";
 
 
 
@@ -16,12 +17,18 @@ export const App = () =>{{
             <Router >
                 <Sidenav isChecked={isDark} handleChange={()=> setIsDark(!isDark) }/>
                 <Routes>
-                    <Route path="/" element={<Home isDark={isDark} />} />
-                    <Route path="/nodes/xor" element={<Xor isDark={isDark} />} />
+                    <Route index element={<Home isDark={isDark} />} />
+                    <Route path="nodes" >
+                        <Route path="xor" element={<Xor isDark={isDark} />} />
+                        <Route path="sbox" element={<SubBox isDark={isDark} />} />
+                    </Route>
+                    <Route path="algorithms" >
+                        <Route path="aes" element={<AES isDark={isDark} />} />
+                    </Route>
 
-                    <Route path="/algorithms/aes" element={<AES isDark={isDark} />} />
 
-                    <Route path="/Sandbox" element={<Flow colorMode={isDark} />} />
+
+                    <Route path="Sandbox" element={<Flow colorMode={isDark} />} />
                 </Routes>
             </Router>
         )

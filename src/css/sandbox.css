@@ -29,14 +29,36 @@ body {
   height: 100vh;
 }
 
-.example_dndflow {
-  border-radius: 10px;
+.dndflow {
+  margin-left: 64px;
   flex-direction: column;
   display: flex;
   flex-grow: 1;
   height: 100%;
 }
 
+.aside {
+  border-radius: 16px;
+  padding: 15px 10px;
+  max-width: 175px;
+  font-size: 15px;
+  background: var(--primaryColor);
+}
+
+.dark  .aside {
+  color: white;
+  background: var(--secondaryDark);
+}
+
+.aside .description {
+  border-radius: 10px;
+  background-color: var(--secondaryColor);
+  margin-bottom: 10px;
+  padding: 10px;
+}
+.dark .aside .description{
+  background-color: var(--primaryDark);
+}
 .dndnode {
   background-color: var(--secondaryColor);
   height: auto;
@@ -51,25 +73,33 @@ body {
   cursor: grab;
 }
 
-
-
-.example_dndflow .example_reactflow-wrapper {
-  border-radius: 10px;
-  flex-grow: 1;
-  width:auto;
-  height: auto;
+.dark .dndnode{
+  background-color: var(--primaryDark);
 }
 
-.example_dndflow .selectall {
+.dndflow .dndnode.input {
+  border-color: #0041d0;
+}
+
+.dndflow .dndnode.output {
+  border-color: #ff0072;
+}
+
+.dndflow .reactflow-wrapper {
+  flex-grow: 1;
+  height: 100%;
+}
+
+.dndflow .selectall {
   margin-top: 10px;
 }
 
 @media screen and (min-width: 768px) {
-  .example_dndflow {
+  .dndflow {
     flex-direction: row;
   }
 
-  .example_dndflow .aside {
+  .dndflow .aside {
     max-width: 300px;
   }
 }
@@ -96,6 +126,11 @@ body {
   border-radius: 10px;
   width: 100%;
   background: var(--primaryColor);
+}
+
+.dark .context-menu button{
+  background: var(--primaryDark);
+  color: white;
 }
 
 .context-menu button:hover {

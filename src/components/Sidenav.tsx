@@ -19,7 +19,7 @@ function Sidenav({handleChange, isChecked}) {
     return (
         <SideNav data-theme={isChecked ? "dark" : "light"} id="sidenav" onSelect={selected => {
             switch(selected) {
-                case "home": navigate("/");
+                case "home": navigate("");
                 break;
                 default : navigate("/" + selected);
 
@@ -43,6 +43,9 @@ function Sidenav({handleChange, isChecked}) {
                     <NavText style={{fontSize: 1.5 + "em"}}>Nodes</NavText>
                     <NavItem eventKey="nodes/xor">
                         <NavText style={{fontSize: 1.5 + "em"}}>XOR</NavText>
+                    </NavItem>
+                    <NavItem eventKey="nodes/sbox">
+                        <NavText style={{fontSize: 1.5 + "em"}}>S-Box</NavText>
                     </NavItem>
                 </NavItem>
 

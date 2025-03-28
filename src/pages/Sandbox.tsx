@@ -36,7 +36,7 @@ import ColumnMajorOrder from "@/nodes/ColumnMajorOrder.tsx";
 import InvSubBytes from "../nodes/InverseSubBytes.tsx";
 import MixColumns from "@/nodes/MixColumns.tsx";
 import {useWindowSize} from "@react-hook/window-size";
-import '../css/flow.css';
+import '../css/sandbox.css';
 
 const nodeTypes = {
   text: TextNode,

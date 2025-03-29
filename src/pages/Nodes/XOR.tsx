@@ -8,7 +8,7 @@ function xor({isDark}) {
 
                 <h1>XOR</h1>
 
-                XOR is a Logic gate calculates to Bytes by the following logic. XORs Node Symbol is ⊕
+                XOR is a Logic gate that calculates two Bytes by the following logic. XORs Node Symbol is ⊕
                 <h2>XOR Truth Table</h2>
                 <table>
                     <thead>

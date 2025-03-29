@@ -20,7 +20,7 @@ function TextToBinaryNode({ id }: NodeProps) {
     const textNode = isTextNode(nodesData) ? nodesData : null;
 
     useEffect(() => {
-        updateNodeData(id, { bytes:  Array.from(textNode !== null ? textNode.data.text : '', char => char.charCodeAt(0))});
+        updateNodeData(id, { bytes:  Array.from(textNode == null | textNode?.data?.text == null ? '' : textNode?.data.text , char => char?.charCodeAt(0))});
     }, [textNode]);
 
     return (

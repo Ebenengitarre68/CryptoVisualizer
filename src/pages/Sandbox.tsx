@@ -37,6 +37,7 @@ import InvSubBytes from "../nodes/InverseSubBytes.tsx";
 import MixColumns from "@/nodes/MixColumns.tsx";
 import {useWindowSize} from "@react-hook/window-size";
 import '../css/sandbox.css';
+import BytesNode from "@/nodes/BytesNode.tsx";
 
 const nodeTypes = {
   text: TextNode,
@@ -54,7 +55,8 @@ const nodeTypes = {
   shiftR: ShiftRows,
   invShiftR: InvShiftRows,
   colMajor: ColumnMajorOrder,
-  mixColumns: MixColumns
+  mixColumns: MixColumns,
+  bytesIn: BytesNode
 };
 
 const edgeTypes = {
@@ -317,6 +319,7 @@ const CustomNodeFlow = ({colorMode}) => {
                         defaultValue="default">
                   <option value="default" hidden>Select Algorithm</option>
                   <option value="/graphs/test.json">Test</option>
+                  <option value="public/graphs/AES-R1-Draft.json">AES</option>
                 </select>
 
               </div>

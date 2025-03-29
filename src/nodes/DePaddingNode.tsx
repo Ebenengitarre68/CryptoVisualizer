@@ -62,8 +62,8 @@ function DePaddingNode({ id, data }: NodeProps) {
                 isConnectable={connectionsIn.length === 0}
             />
             <span className="tooltiptext">
-                Top: Salted Msg In<br/>
-                Left: Salt In<br/>
+                Top: Padded Msg In<br/>
+                Left: Padding In<br/>
                 Bottom: Msg Out<br/>
             </span>
             <Handle
@@ -72,7 +72,7 @@ function DePaddingNode({ id, data }: NodeProps) {
                 position={Position.Left}
                 isConnectable={connectionsSalt.length === 0}
             />
-            <div>De-Salting</div>
+            <div>De-Padding</div>
             <Handle id='bytes' type="source" position={Position.Bottom}/>
         </BaseNode>
     );

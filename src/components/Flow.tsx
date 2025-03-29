@@ -32,6 +32,7 @@ import InvShiftRows from "@/nodes/InvShiftRows.tsx";
 import ColumnMajorOrder from "@/nodes/ColumnMajorOrder.tsx";
 import InvSubBytes from "../nodes/InverseSubBytes.tsx";
 import MixColumns from "@/nodes/MixColumns.tsx";
+import BytesNode from "../nodes/BytesNode.tsx";
 import '../css/flow.css';
 
 const nodeTypes = {
@@ -50,7 +51,8 @@ const nodeTypes = {
     shiftR: ShiftRows,
     invShiftR: InvShiftRows,
     colMajor: ColumnMajorOrder,
-    mixColumns: MixColumns
+    mixColumns: MixColumns,
+    bytesIn: BytesNode
 };
 
 const edgeTypes = {
@@ -61,6 +63,7 @@ const defaultEdgeOptions = {
     animated: false,
     type: 'display',
 };
+
 
 const initNodes: MyNode[] = [
     {
@@ -90,8 +93,7 @@ const initEdges: Edge[] = [
 ];
 
 
-
-const CustomNodeFlow = ({colorMode}) => {
+const CustomNodeFlow = ({colorMode , flow}) => {
     const [color, setColor] = useState<ColorMode>(colorMode? "dark" : "light");
     const reactFlowWrapper = useRef(null);
     const [nodes,setNodes , onNodesChange] = useNodesState(initNodes);
@@ -109,7 +111,11 @@ const CustomNodeFlow = ({colorMode}) => {
         [setEdges],
     );
 
+
+
     useEffect(() => { setColor(colorMode? "dark":"light") },[colorMode])
+
+
 
     const onDragOver = useCallback((event) => {
         event.preventDefault();
@@ -137,6 +143,28 @@ const CustomNodeFlow = ({colorMode}) => {
     // Close the context menu if it's open whenever the window is clicked.
     const onPaneClick = useCallback(() => setMenu(null), [setMenu]);
 
+
+    const onRestore = useCallback((path:string) => {
+
+        const restoreFlow = async (json:string) => {
+            const flow = json;
+            if (flow) {
+                setNodes(flow.nodes || []);
+                setEdges(flow.edges || [])
+                fitView()
+                id = flow.nodes.length
+            }
+        };
+        fetch(path)
+            .then(response =>
+                response.json()
+            ).then(json => restoreFlow(json)
+        )
+    }, [setNodes, setViewport]);
+
+    useEffect(() => {
+        onRestore(flow)
+    }, [flow]);
 
 
     return (
@@ -170,8 +198,8 @@ const CustomNodeFlow = ({colorMode}) => {
 };
 
 
-export default ({colorMode}) => (
+export default ({colorMode , flow}) => (
     <ReactFlowProvider>
-        <CustomNodeFlow colorMode={colorMode} />
+        <CustomNodeFlow colorMode={colorMode} flow={flow} />
     </ReactFlowProvider>
 );

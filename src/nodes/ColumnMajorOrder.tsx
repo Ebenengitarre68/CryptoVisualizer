@@ -24,7 +24,8 @@ function ColumnMajorOrder({ id, data }: NodeProps) {
         if (data["mode"] != null){
             mode = data["mode"];
         }
-        if(nodesData !== null) {
+
+        if(nodesData !== null && nodesData.data !== null && nodesData.data[connections.at(0).sourceHandle] !== undefined) {
             let data = nodesData.data[connections.at(0).sourceHandle];
             let out = [];
             if(data.length == 16){

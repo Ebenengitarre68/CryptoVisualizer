@@ -29,6 +29,9 @@ function PaddingNode({ id, data }: NodeProps) {
     useEffect(() => {
         if(connectionsSalt.length == 1 && connectionsIn.length == 1) {
             const saltNode = connectionsSalt[0];
+            if ( saltData[0].data[saltNode.sourceHandle] == undefined){
+                return;
+            }
             const salt = [...saltData[0].data[saltNode.sourceHandle]];
             const inputNode = connectionsIn[0]
             let input = [...inData[0].data[inputNode.sourceHandle]];
@@ -64,9 +67,9 @@ function PaddingNode({ id, data }: NodeProps) {
             />
             <span className="tooltiptext">
                 Top: Msg In<br/>
-                Left: Salt In<br/>
-                Right: Salt Out<br/>
-                Bottom: Salted Msg<br/>
+                Left: Padding In<br/>
+                Right: Padding Out<br/>
+                Bottom: Padded Msg<br/>
             </span>
             <Handle
                 type="target"
@@ -74,7 +77,7 @@ function PaddingNode({ id, data }: NodeProps) {
                 position={Position.Left}
                 isConnectable={connectionsSalt.length === 0}
             />
-            <div>Salting to
+            <div>Padding to
                 <select className="select" onChange={onChange}>
                     <option value={128}>128</option>
                     <option value={256}>256</option>

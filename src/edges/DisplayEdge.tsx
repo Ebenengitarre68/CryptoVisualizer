@@ -1,4 +1,4 @@
-import React, {useContext} from 'react';
+import React, {useContext, useEffect} from 'react';
 import {
     BaseEdge,
     getBezierPath,
@@ -29,8 +29,6 @@ export default function DisplayEdge({
         targetPosition,
     });
 
-
-
     return data != null && data?.["monitor"] == true ?(
         <>
             <BaseEdge path={edgePath} markerEnd={markerEnd} style={style} />
@@ -46,7 +44,9 @@ export default function DisplayEdge({
                     }}
                     className="edge-label"
                 >
-                    { typeof  useNodesData(source).data[sourceHandleId] == "string" ? useNodesData(source).data[sourceHandleId] :
+                    {  useNodesData(source).data[sourceHandleId] == null? "":
+                        typeof  useNodesData(source).data[sourceHandleId] == "string" ?
+                        useNodesData(source)?.data[sourceHandleId] :
                         useNodesData(source).data[sourceHandleId].map(x => typeof x == "number" ? x.toString(16).toUpperCase() : x).toString()}
                 </div>
             </EdgeLabelRenderer>

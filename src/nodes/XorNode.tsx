@@ -26,17 +26,29 @@ function XorNode({ id }: NodeProps) {
     useEffect(() => {
         if(nodesData.length === 0) return;
         if(nodesData.length === 1) {
+            if(nodesData[0].data[connections.at(0).sourceHandle] == undefined) {
+                return;
+            }
             updateNodeData(id, { bytes: nodesData[0].data[connections.at(0).sourceHandle] });
             return;
         }
         let offset:number = 0;
-        while (nodesData[offset].type == 'text'){
+        while ( nodesData[offset].data == undefined
+            || nodesData[offset].data[connections.at(0).sourceHandle] == undefined
+            || nodesData[offset].type == 'text' ){
             offset++
+            if ( offset < nodesData.length ) {
+                return;
+            }
         }
 
+
+        if(nodesData[offset] == undefined){
+            return;
+        }
         let content = [...nodesData[offset].data[connections.at(0).sourceHandle]];
         for (let i:number = offset + 1; i < nodesData.length; i++) {
-            if (nodesData[i].type == 'text'){continue}
+            if (nodesData[i].data[connections.at(i).sourceHandle] == undefined  || nodesData[i].type == 'text'){continue}
             for (let j:number = 0; j < content.length; j++) {
                 content[j] = content[j] ^ nodesData[i].data[connections.at(i).sourceHandle][j];
             }

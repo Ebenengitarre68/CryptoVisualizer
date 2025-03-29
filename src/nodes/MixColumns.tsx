@@ -24,7 +24,7 @@ function MixColumns({ id, data }: NodeProps) {
         if (data["mode"] != null){
             mode = data["mode"];
         }
-        if(nodesData !== null) {
+        if(nodesData !== null && nodesData.data !== null && nodesData.data[connections.at(0).sourceHandle] !== undefined) {
             let data = nodesData.data[connections.at(0).sourceHandle];
             let out = [...data];
             if(data.length== 16){
@@ -35,13 +35,14 @@ function MixColumns({ id, data }: NodeProps) {
                             let a = new Array(4);
                             let b = new Array(4);
                             for (let i:number = 0; i < 4; i++) {
-                                a[i] = out[i + c * 4];
-                                b[i] = out[i + c * 4] & 0x80 ? out[i + c * 4]<<1 ^ 0x011b : out[i + c * 4]<<1;
+                                a[i] = out[i * 4 + c ];
+                                b[i] = out[i * 4 + c] & 0x80 ? out[i * 4 + c ]<<1 ^ 0x011b : out[i * 4 + c]<<1;
                             }
-                            out[0 + c * 4] = b[0] ^ a[1] ^ b[1] ^ a[2] ^ a[3];
-                            out[1 + c * 4] = a[0] ^ b[1] ^ a[2] ^ b[2] ^ a[3];
-                            out[2 + c * 4] = a[0] ^ a[1] ^ b[2] ^ a[3] ^ b[3];
-                            out[3 + c * 4] = a[0] ^ b[0] ^ a[1] ^ a[2] ^ b[3];
+
+                            out[c ] = b[0] ^ a[1] ^ b[1] ^ a[2] ^ a[3];
+                            out[4 + c ] = a[0] ^ b[1] ^ a[2] ^ b[2] ^ a[3];
+                            out[8 + c ] = a[0] ^ a[1] ^ b[2] ^ a[3] ^ b[3];
+                            out[12 + c ] = a[0] ^ b[0] ^ a[1] ^ a[2] ^ b[3];
                         }
                         break;
                     default:

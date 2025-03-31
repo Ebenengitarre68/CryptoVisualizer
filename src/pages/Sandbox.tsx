@@ -212,7 +212,13 @@ const CustomNodeFlow = ({colorMode}) => {
         setNodes(flow.nodes || []);
         setEdges(flow.edges || [])
         fitView()
-        id = flow.nodes.length
+        let maxid:number = 0;
+        for (const n of flow.nodes){
+            if(n.id.replace(/\w*_/,"") > maxid){
+              maxid = n.id.replace(/\w*_/,"")
+            }
+        }
+        id = Number(maxid)+1
       }
     };
     fetch(path)
@@ -319,7 +325,8 @@ const CustomNodeFlow = ({colorMode}) => {
                         defaultValue="default">
                   <option value="default" hidden>Select Algorithm</option>
                   <option value="/graphs/test.json">Test</option>
-                  <option value="public/graphs/AES-R1-Draft.json">AES</option>
+                  <option value="public/graphs/AES128R1.json">AES Round 1</option>
+                  <option value="public/graphs/AES128Full.json">AES Full</option>
                 </select>
 
               </div>

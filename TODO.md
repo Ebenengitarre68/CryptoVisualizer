@@ -1,24 +1,14 @@
 # Latex
 
-Entweder book oder report
-
-## Komascript (report klasser)
-
 # TODO
 
 # Algorithms to implement
-
-## AES
 
 ## Some Hash Function
 
 # Others
 
 ## Node Categories?
-
-## SubBytes Node Improvements / Cleaner
-
-## MixColumns Node
 
 ## Config Node
 
@@ -34,12 +24,9 @@ Entweder book oder report
 
 ### Choose-able Graphs
 
-* AES
-* ...
 * Upload
 
 ## BUGS
 
-* When dragged over the node select nodes will be spawned if let go 
-* Edge Labels are default color
+* When dragged over the node select, nodes will be spawned if let go
 * Crash when connecting empty random node to fully connected padding node

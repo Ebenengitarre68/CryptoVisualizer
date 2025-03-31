@@ -15,7 +15,7 @@ function aes({isDark}) {
 
 
                 <div style={{width: 900+"px" , height: 900+"px", marginTop:"10px"}} >
-                    <Flow colorMode={isDark} flow={"graphs/AES-R1-Draft.json"} />
+                    <Flow colorMode={isDark} flow={"graphs/AES128R1.json"} />
                 </div>
 
 

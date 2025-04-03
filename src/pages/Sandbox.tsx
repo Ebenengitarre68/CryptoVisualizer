@@ -282,6 +282,31 @@ const CustomNodeFlow = ({colorMode}) => {
     }).then(downloadSVG);
   };
 
+  const onFile = () =>{
+
+    const restoreFlow = async (json:string) => {
+      const flow = json;
+      if (flow) {
+        setNodes(flow.nodes || []);
+        setEdges(flow.edges || [])
+        fitView()
+        let maxid:number = 0;
+        for (const n of flow.nodes){
+          if(n.id.replace(/\w*_/,"") > maxid){
+            maxid = n.id.replace(/\w*_/,"")
+          }
+        }
+        id = Number(maxid)+1
+      }
+    };
+    let reader = new FileReader()
+    reader.readAsText(uploadAlg.files[0]);
+    reader.onloadend = () => {
+      restoreFlow(JSON.parse(reader.result));
+    }
+
+  }
+  const uploadclick = ()=> uploadAlg.click()
 
   return (
       <div className='dndflow' onClick={onPaneClick}>
@@ -321,12 +346,16 @@ const CustomNodeFlow = ({colorMode}) => {
                   </div>
                 </div>
 
+                <input id="uploadAlg" type={"file"} accept={".json"} onChange={onFile} style={{display: 'none'}}/>
+
+
                 <select id="algChanger" onChange={onAlgChange} className="nav-button right-nav-button"
                         defaultValue="default">
                   <option value="default" hidden>Select Algorithm</option>
                   <option value="/graphs/test.json">Test</option>
                   <option value="public/graphs/AES128R1.json">AES Round 1</option>
                   <option value="public/graphs/AES128Full.json">AES Full</option>
+                  <option onClick={uploadclick} >Upload</option>
                 </select>
 
               </div>

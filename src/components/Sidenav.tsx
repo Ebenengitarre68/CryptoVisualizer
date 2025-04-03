@@ -47,6 +47,9 @@ function Sidenav({handleChange, isChecked}) {
                     <NavItem eventKey="nodes/sbox">
                         <NavText style={{fontSize: 1.5 + "em"}}>S-Box</NavText>
                     </NavItem>
+                    <NavItem eventKey="nodes/shiftrows">
+                        <NavText style={{fontSize: 1.5 + "em"}}>Shift Rows</NavText>
+                    </NavItem>
                 </NavItem>
 
                 <NavItem eventKey="sandbox" >

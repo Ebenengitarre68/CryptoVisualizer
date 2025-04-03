@@ -29,7 +29,6 @@ h2{
 }
 
 .example{
-    text-align: ;
     border-radius: 10px;
     border-color: var(--example-box-border);
     border-width: 2px;
@@ -38,6 +37,7 @@ h2{
     margin: 25px auto;
     padding-left: 40px;
     padding-right: 40px;
+    padding-bottom: 20px;
     background-color: var(--example-box-color);
 }
 .example-table{

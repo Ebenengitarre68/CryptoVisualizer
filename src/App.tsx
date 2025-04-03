@@ -7,6 +7,7 @@ import Sidenav from "@/components/Sidenav.tsx";
 import "/src/css/general.css"
 import useLocalStorage from "use-local-storage";
 import SubBox from "@/pages/Nodes/SubBox.tsx";
+import ShiftRows from "@/pages/Nodes/ShiftRows.tsx";
 
 
 
@@ -21,6 +22,7 @@ export const App = () =>{{
                     <Route path="nodes" >
                         <Route path="xor" element={<Xor isDark={isDark} />} />
                         <Route path="sbox" element={<SubBox isDark={isDark} />} />
+                        <Route path="shiftrows" element={<ShiftRows isDark={isDark} />} />
                     </Route>
                     <Route path="algorithms" >
                         <Route path="aes" element={<AES isDark={isDark} />} />

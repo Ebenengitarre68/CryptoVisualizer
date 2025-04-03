@@ -3,7 +3,7 @@ import Footer from "@/components/Footer.tsx";
 function xor({isDark}) {
     return (
         <div data-theme={isDark ? "dark" : "light"} className="background">
-            <div className="div" set>
+            <div className="div">
                 <title>CryptoVisXor</title>
 
                 <h1>XOR</h1>

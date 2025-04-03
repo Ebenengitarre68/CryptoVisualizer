@@ -70,7 +70,7 @@ const defaultEdgeOptions = {
 
 const initNodes: MyNode[] = [
   {
-    id: 't1',
+    id: 'node_1',
     type: 'text',
     data: {
       text: 'Hello World'
@@ -78,7 +78,7 @@ const initNodes: MyNode[] = [
     position: { x: 0, y: 0 },
   },
   {
-    id: 'r1',
+    id: 'node_2',
     type: 'monitor',
     data: {},
     position: { x: 38, y: 100 },
@@ -89,9 +89,9 @@ const initNodes: MyNode[] = [
 const initEdges: Edge[] = [
   {
     id: 't1-r1',
-    source: 't1',
+    source: 'node_1',
     sourceHandle:'text',
-    target: 'r1',
+    target: 'node_2',
   },
 ];
 function downloadImage(dataUrl) {

@@ -3,7 +3,7 @@ import Footer from "@/components/Footer.tsx";
 function shiftrows({isDark}) {
     return (
         <div data-theme={isDark ? "dark" : "light"} className="background">
-            <div className="div" set>
+            <div className="div" >
                 <title>CryptoVisShiftRows</title>
 
                 <h1>Shift Rows</h1>

@@ -8,6 +8,11 @@ function home({isDark}:{isDark?:boolean}) {
                 <title>CryptoVis</title>
 
                 <h1>CryptoVis</h1>
+                <h2>DISCLAIMER</h2>
+                <p>
+                    While this tool should be accurate it is not meant to encrypt important data!<br/>
+                    This page does not yet support phones, the website will not look good!
+                </p>
                 <h2>What is CryptoVis</h2>
                 <p>
                     CryptoVis is an intuitive and interactive visualization tool, designed to help users understand
@@ -16,8 +21,7 @@ function home({isDark}:{isDark?:boolean}) {
                     CryptoVis provides real-time graphical representations of encryption, decryption, hashing, and key
                     exchanges.
                     It simplifies cryptography concepts, making them more accessible to
-                    students, researchers, and security professionals alike. <br/>
-                    While this tool should be accurate it is not meant to encrypt important data!
+                    students, researchers, and security professionals alike.
                 </p>
 
 

@@ -15,9 +15,9 @@ function home({isDark}) {
                     Whether you're a beginner learning about XOR ciphers or an expert analyzing AES encryption,
                     CryptoVis provides real-time graphical representations of encryption, decryption, hashing, and key
                     exchanges.
-                    With a user-friendly interface, it simplifies cryptography concepts, making them accessible to
+                    It simplifies cryptography concepts, making them more accessible to
                     students, researchers, and security professionals alike. <br/>
-                    While this tool is accurate it is not meant to encrypt important data!
+                    While this tool should be accurate it is not meant to encrypt important data!
                 </p>
 
 

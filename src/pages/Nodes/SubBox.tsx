@@ -343,7 +343,6 @@ function subbox({isDark}) {
 
 
     const onAlgChange: ChangeEventHandler<HTMLSelectElement> = (evt) => {
-        console.log(evt.target.value);
         setChosen(subboxes.get(evt.currentTarget.value))
     }
     return (

@@ -29,4 +29,4 @@
 ## BUGS
 
 * When dragged over the node select, nodes will be spawned if let go
-* Crash when connecting empty random node to fully connected padding node
+* Some Crashes when nods get connected sometimes

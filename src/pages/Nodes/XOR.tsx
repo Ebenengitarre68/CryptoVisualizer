@@ -5,7 +5,6 @@ function xor({isDark}) {
         <div data-theme={isDark ? "dark" : "light"} className="background">
             <div className="div">
                 <title>CryptoVisXor</title>
-
                 <h1>XOR</h1>
 
                 XOR is a Logic gate that calculates two Bytes by the following logic. XORs Node Symbol is ⊕

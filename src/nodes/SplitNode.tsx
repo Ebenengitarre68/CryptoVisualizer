@@ -20,7 +20,7 @@ function SplitNode({id, data}: NodeProps) {
     const nodesData:Pick<MyNode, any> = useNodesData<MyNode>(
         connections.map((connection) => connection.source),
     );
-    let width:number = data.outputs * 25 + 5;
+    const width:number = data.outputs * 25 + 5;
 
     const uppdateHandles = useCallback(()=>{
         if( data.out < 2){

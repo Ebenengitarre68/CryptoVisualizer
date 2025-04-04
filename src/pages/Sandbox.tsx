@@ -112,7 +112,7 @@ function downloadSVG(dataUrl) {
 let id = initNodes.length;
 const getId = () => `node_${id++}`;
 
-const CustomNodeFlow = ({colorMode}) => {
+const CustomNodeFlow = ({colorMode}:{colorMode:boolean}) => {
   const [color, setColor] = useState<ColorMode>(colorMode? "dark" : "light");
   const reactFlowWrapper = useRef(null);
   const [nodes,setNodes , onNodesChange] = useNodesState(initNodes);

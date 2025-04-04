@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, memo, useEffect } from 'react';
+import {ChangeEventHandler, memo, useEffect } from 'react';
 import {
     Position,
     Handle,
@@ -26,7 +26,7 @@ function ShiftRows({ id, data }: NodeProps) {
         }
         if(nodesData !== null) {
             let data = nodesData.data[connections.at(0).sourceHandle];
-            let out = [];
+            let out: unknown[] = [];
             if(data.length== 16){
                 switch (mode) {
                     case 0:

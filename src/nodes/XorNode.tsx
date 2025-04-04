@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import {
     Position,
     Handle,
@@ -11,7 +11,6 @@ import {
 import {  type MyNode } from './utils';
 import {BaseNode} from "@/components/base-node.tsx";
 import {Link} from "react-router-dom";
-import XOR from "@/pages/Nodes/XOR.tsx";
 
 function XorNode({ id }: NodeProps) {
     const { updateNodeData } = useReactFlow();

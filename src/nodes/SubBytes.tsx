@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, memo, useEffect } from 'react';
+import {ChangeEventHandler, memo, useEffect } from 'react';
 import {
     Position,
     Handle,

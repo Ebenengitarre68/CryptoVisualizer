@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, memo, useEffect } from 'react';
+import {ChangeEventHandler, memo, useEffect } from 'react';
 import {
     Position,
     Handle,
@@ -20,7 +20,7 @@ function ColumnMajorOrder({ id, data }: NodeProps) {
     const nodesData:Pick<MyNode, "id" | "type" | "data"> | null = useNodesData<MyNode>(connections[0]?.source);
 
     useEffect(() => {
-        let mode:number = 0;
+        let mode:unknown = 0;
         if (data["mode"] != null){
             mode = data["mode"];
         }

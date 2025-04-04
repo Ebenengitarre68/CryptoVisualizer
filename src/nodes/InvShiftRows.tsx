@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, memo, useEffect } from 'react';
+import {ChangeEventHandler, memo, useEffect } from 'react';
 import {
     Position,
     Handle,
@@ -25,8 +25,8 @@ function InvShiftRows({ id, data }: NodeProps) {
             mode = data["mode"];
         }
         if(nodesData !== null) {
-            let data = nodesData.data[connections.at(0).sourceHandle];
-            let out = [];
+            const data = nodesData.data[connections.at(0).sourceHandle];
+            let out:unknown[] = [];
             if(data.length== 16){
                 switch (mode) {
                     case 0:

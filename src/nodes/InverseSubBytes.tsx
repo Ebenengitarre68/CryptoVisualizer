@@ -1,4 +1,4 @@
-import React, {ChangeEventHandler, memo, useEffect } from 'react';
+import {ChangeEventHandler, memo, useEffect } from 'react';
 import {
     Position,
     Handle,
@@ -41,14 +41,14 @@ function SubBytes({ id, data }: NodeProps) {
     const nodesData:Pick<MyNode, "id" | "type" | "data"> | null = useNodesData<MyNode>(connections[0]?.source);
 
     useEffect(() => {
-        let mode:number = 0;
+        let mode:unknown = 0;
         if (data["mode"] != null){
             mode = data["mode"];
         }
         if(nodesData !== null) {
-            let data = nodesData.data[connections.at(0).sourceHandle];
+            const data = nodesData.data[connections.at(0).sourceHandle];
             if(data != null) {
-                let out = [];
+                const out = [];
                 for (let i = 0; i < data.length; i++) {
                     out.push(sBoxes[mode][data[i]]);
                 }

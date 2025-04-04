@@ -6,11 +6,11 @@ import {
 } from '@xyflow/react';
 import {BaseNode} from "@/components/base-node.tsx";
 
-function BytesNode({ id, data }: NodeProps<Node<{ bytes: Number[] }>>) {
+function BytesNode({ id, data }: NodeProps<Node<{ bytes: number[] }>>) {
     const { updateNodeData } = useReactFlow();
 
     const onChange:ChangeEventHandler<HTMLInputElement> =(evt) =>{
-        let out = evt.target.value.split(',').map(function(item){
+        const out:number[] = evt.target.value.split(',').map(function(item){
             return parseInt(item,16)
         })
 

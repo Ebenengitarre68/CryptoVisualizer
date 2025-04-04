@@ -11,7 +11,7 @@ import {
 import {BaseNode} from "@/components/base-node.tsx";
 import {MyNode} from "@/nodes/utils.ts";
 
-function DePaddingNode({ id, data }: NodeProps) {
+function DePaddingNode({ id}: NodeProps) {
     const { updateNodeData } = useReactFlow();
     const connectionsIn = useHandleConnections({
         type: 'target', id:'in'

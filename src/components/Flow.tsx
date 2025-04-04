@@ -2,13 +2,12 @@ import {useCallback, useEffect, useRef, useState} from 'react';
 import {
     ReactFlow,
     ReactFlowProvider,
-    Controls,
     addEdge,
     useNodesState,
     useEdgesState,
     Background,
     type Edge,
-    type OnConnect, MiniMap, useReactFlow,  ColorMode
+    type OnConnect, useReactFlow,  ColorMode
 } from '@xyflow/react';
 import '@xyflow/react/dist/style.css';
 

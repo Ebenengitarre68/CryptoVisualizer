@@ -332,13 +332,13 @@ const subboxes = new Map([
             <td>16
             </td>
         </tr>
-        <td colSpan="17" width="20em" style={{textAlign:"center"}}> Column: First Half | Row: Second Half
+        <td width="20em" style={{textAlign:"center"}}> Column: First Half | Row: Second Half
         </td>
         </tbody>
     </table>)],
 ])
 
-function subbox({isDark}) {
+function subbox({isDark}:{isDark?:boolean}) {
     const [chosen, setChosen] = useState(subboxes.get("aes"));
 
 
@@ -461,7 +461,7 @@ function subbox({isDark}) {
                 <p>
                     Here are the Implemented S-Boxes
                     <select className="pageSelect" onChange={onAlgChange}>
-                        <option value="aes" defaultChecked="true">AES</option>
+                        <option value="aes">AES</option>
                     </select>
                 </p>
                 <div style={{borderRadius: "10px", border: "2px solid black", margin: 5, padding: "10px", width:"fit-content"}}>

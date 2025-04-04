@@ -1,4 +1,4 @@
-import React, { memo, useEffect } from 'react';
+import { memo, useEffect } from 'react';
 import {
     Position,
     Handle,
@@ -22,7 +22,7 @@ function BinaryToText({ id }: NodeProps) {
     useEffect(() => {
         if(binaryNode !== null) {
             let result:string = ""
-            let data = binaryNode.data[connections.at(0).sourceHandle] ;
+            const data = binaryNode.data[connections.at(0).sourceHandle] ;
             for (let i = 0; i < data.length; i++) {
                 result += String.fromCharCode(data[i]);
             }

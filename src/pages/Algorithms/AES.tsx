@@ -2,7 +2,7 @@ import Flow from "@/components/Flow.tsx";
 import Footer from "@/components/Footer.tsx";
 import {Link} from "react-router-dom";
 
-function aes({isDark}) {
+function aes({isDark}:{isDark?:boolean}) {
     return (
         <div data-theme={isDark ? "dark" : "light"} className="background">
             <div className="div">

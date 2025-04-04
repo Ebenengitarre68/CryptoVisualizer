@@ -1,6 +1,6 @@
 import Footer from "@/components/Footer.tsx";
 
-function shiftrows({isDark}) {
+function shiftrows({isDark}:{isDark?:boolean}) {
     return (
         <div data-theme={isDark ? "dark" : "light"} className="background">
             <div className="div" >

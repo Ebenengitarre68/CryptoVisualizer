@@ -352,9 +352,9 @@ const CustomNodeFlow = ({colorMode}:{colorMode:boolean}) => {
                 <select id="algChanger" onChange={onAlgChange} className="nav-button right-nav-button"
                         defaultValue="default">
                   <option value="default" hidden>Select Algorithm</option>
-                  <option value="/graphs/test.json">Test</option>
-                  <option value="public/graphs/AES128R1.json">AES Round 1</option>
-                  <option value="public/graphs/AES128Full.json">AES Full</option>
+                  <option value="graphs/test.json">Test</option>
+                  <option value="graphs/AES128R1.json">AES Round 1</option>
+                  <option value="graphs/AES128Full.json">AES Full</option>
                   <option onClick={uploadclick} >Upload</option>
                 </select>
 

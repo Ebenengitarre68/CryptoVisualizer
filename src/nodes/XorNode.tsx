@@ -60,7 +60,7 @@ function XorNode({ id }: NodeProps) {
             className="node tooltip"
             style={{fontSize: 25, padding: 4}}
         >
-            <span className="tooltiptextsmall">XOR<Link target="_blank" to={"/xor"}>🛈</Link></span>
+            <span className="tooltiptextsmall">XOR<Link target="_blank" to={"/nodes/xor"}>🛈</Link></span>
             <Handle
                 type="target"
                 position={Position.Top}
